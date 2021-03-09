@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="layout :: htmlhead" th:with="title='认知评估'"></head>
+<body>
+<div class="layui-container" style="width: 100%">
+    <div class="layui-card">
+        <div class="layui-card-body">
+
+            <form id="patientSearch" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">患者姓名</label>
+                    <div class="layui-input-inline">
+                        <input id="name" name="name" autocomplete="off" class="layui-input" type="text"/>
+                    </div>
+                    <label class="layui-form-label">住院号</label>
+                    <div class="layui-input-inline">
+                        <input id="hispitalNo" name="hispitalNo" autocomplete="off" class="layui-input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"
+                               onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
+                    </div>
+                    <button class="layui-btn"  lay-submit="" lay-filter="searchSubmit">提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </form>
+
+            <!--<hr class="layui-bg-blue"/>-->
+            <!--<hr class="layui-bg-black"/>
+            <shiro:hasPermission  name = "setUserPermission">
+                <button class="layui-btn layui-btn-normal" onclick="addUser()">开通用户</button>
+            </shiro:hasPermission>
+            <button class="layui-btn layui-btn-normal" onclick="nolockUser()">解锁</button>
+
+            <div style="display:none;" id="currentUser"><shiro:principal property="id"></shiro:principal></div>-->
+
+            <table id="patientList" lay-filter="patientTable"></table>
+
+            <div id="detailCam" class="layer_self_wrap" style="display:none;">
+                <table id="camList" lay-filter="camListTable"></table>
+            </div>
+
+            <script type="text/html" id="optBar">
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="addCAM">CAM测试</a>
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="detailCam">CAM详情</a>
+            </script>
+
+
+            <!--<script type="text/html" id="jobTpl">
+                {{#  if(!d.job){ }}
+                <input type="checkbox" name="{{d.username}}_{{d.version}}" value="{{d.id}}" lay-skin="switch" lay-text="在职|离职" lay-filter="isJobTpl" checked="checked" />
+                {{#  } else { }}
+                <input type="checkbox" name="{{d.username}}_{{d.version}}" value="{{d.id}}" lay-skin="switch" lay-text="在职|离职" lay-filter="isJobTpl"/>
+                {{#  } }}
+            </script>-->
+
+
+            <!--添加或编辑用户-->
+            <div id="setCAM" class="layer_self_wrap" style="width:580px;display:none;">
+                <form id="camForm" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
+                    <input id="pageNum" type="hidden" name="pageNum"/>
+                    <input id="patientId" type="hidden" name="patientId"/>
+                    <input id="id" type="hidden" name="id"/>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">手术状态</label>
+                        <div class="layui-input-block">
+                            <select name="status">
+                                <option value="">请选择--手术状态</option>
+                                <option value="1">手术前</option>
+                                <option value="2">手术中</option>
+                                <option value="3">手术后</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">急性起病</label>
+                        <div class="layui-input-block">
+                            <select name="acute">
+                                <option value="">请选择--急性起病</option>
+                                <option value="1">不存在</option>
+                                <option value="2">较轻:三天至一周</option>
+                                <option value="3">中度:一天至三天</option>
+                                <option value="4">严重:一天之内</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">注意障碍</label>
+                        <div class="layui-input-block">
+                            <select name="attention">
+                                <option value="">请选择--注意障碍</option>
+                                <option value="1">不存在</option>
+                                <option value="2">轻度:1——2个错误</option>
+                                <option value="3">中度:3——4个错误</option>
+                                <option value="4">严重:5个或5个以上的错误</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">思维混乱</label>
+                        <div class="layui-input-block">
+                            <select name="thinking">
+                                <option value="">请选择--思维混乱</option>
+                                <option value="1">不存在</option>
+                                <option value="2">轻度:偶尔短暂的言语模糊或不可理解,但尚能顺利交谈</option>
+                                <option value="3">中度:经常短暂的言语不可理解,对交谈有明显的影响</option>
+                                <option value="4">严重:大多数的时间言语不可理解,难以进行有效的交谈</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">意识水平的改变</label>
+                        <div class="layui-input-block">
+                            <select name="sence">
+                                <option value="">请选择--意识水平的改变</option>
+                                <option value="1">不存在:机敏(正常)</option>
+                                <option value="2">轻度:警觉(对环境刺激高度警惕、过度敏感)</option>
+                                <option value="3">中度:嗜睡(瞌睡,但易于唤醒)或昏睡(难以唤醒)</option>
+                                <option value="4">严重:昏迷(不能唤醒)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">定向障碍</label>
+                        <div class="layui-input-block">
+                            <select name="directional">
+                                <option value="">请选择--定向障碍</option>
+                                <option value="1">不存在</option>
+                                <option value="2">轻度:偶尔短暂地存在时间或地点的定向错误(接近正确),但可自行纠正</option>
+                                <option value="3">中度:经常存在时间或地点的定向的错误,但自我定向好</option>
+                                <option value="4">严重:时间、地点及自我定向均差</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">记忆力减退</label>
+                        <div class="layui-input-block">
+                            <select name="memoryLoss">
+                                <option value="">请选择--记忆力减退</option>
+                                <option value="1">不存在</option>
+                                <option value="2">轻度:有一个词不能回忆或回忆错误</option>
+                                <option value="3">中度:有两个词不能回忆或回忆错误</option>
+                                <option value="4">严重:有三个词不能回忆或回忆错误</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">知觉障碍</label>
+                        <div class="layui-input-block">
+                            <select name="perceptionDisorders">
+                                <option value="">请选择--知觉障碍</option>
+                                <option value="1">不存在</option>
+                                <option value="2">轻度:只存在幻听</option>
+                                <option value="3">中度:存在幻视,有或没有幻听</option>
+                                <option value="4">严重:存在幻触、幻嗅或幻味,有或没有幻听</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">精神运动性兴奋</label>
+                        <div class="layui-input-block">
+                            <select name="psychoSportExcitement">
+                                <option value="">请选择--精神运动性兴奋</option>
+                                <option value="1">不存在</option>
+                                <option value="2">轻度:偶有坐立不安,焦虑、轻敲手指及抖动</option>
+                                <option value="3">中度:反复无目的地走动、激越明显</option>
+                                <option value="4">严重:行为杂乱无章,需要约束</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">精神运动性迟缓</label>
+                        <div class="layui-input-block">
+                            <select name="mentalSportSlow">
+                                <option value="">请选择--精神运动性迟缓</option>
+                                <option value="1">不存在</option>
+                                <option value="2">轻度:偶尔地比先前的活动、行为及动作缓慢</option>
+                                <option value="3">中度:经常保持一种姿势</option>
+                                <option value="4">严重:木僵状态</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">波动性</label>
+                        <div class="layui-input-block">
+                            <select name="wave">
+                                <option value="">请选择--波动性</option>
+                                <option value="1">不存在</option>
+                                <option value="2">轻度:一天之中偶尔地波动</option>
+                                <option value="3">中度:症状在夜间加重</option>
+                                <option value="4">严重:症状在一天中剧烈波动</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">睡眠—觉醒周期</label>
+                        <div class="layui-input-block">
+                            <select name="sleepWakeCycle">
+                                <option value="">请选择--睡眠—觉醒周期</option>
+                                <option value="1">不存在</option>
+                                <option value="2">轻度:日间偶有瞌睡,且夜间时睡时醒</option>
+                                <option value="3">中度:日间经常瞌睡,且夜间时睡时醒或不能入睡</option>
+                                <option value="4">严重:日间经常昏睡而影响交谈,且夜间不能入睡</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block" style="margin-left: 10px;">
+                            <button class="layui-btn"  lay-submit="" lay-filter="camSubmit">提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <script src="/js/dateUtils.js"></script>
+            <script type="text/javascript" th:src="@{/js/patients/testCam.js}"></script>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

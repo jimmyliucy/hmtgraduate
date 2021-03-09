@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="/js/ztree/css/zTreeStyle/zTreeStyle.css"></link>
+<head th:include="layout :: htmlhead" th:with="title='患者管理'"></head>
+<script type="text/javascript" src="/js/dateUtils.js"></script>
+<body>
+<div  class="layui-container" style="width: 100%">
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+        <ul class="layui-tab-title">
+            <li id="patientList" class="layui-this">患者列表</li>
+            <li id="setPatient">新增患者</li>
+            <li id="updatePatient" style="display:none;">更新患者信息</li>
+        </ul>
+        <div class="layui-tab-content" style="height: 100px;">
+            <div id="patientListDiv" class="layui-tab-item layui-show">
+                <div th:include="patients/patientList :: patientList"></div>
+            </div>
+            <div id="setPatientDiv" class="layui-tab-item">
+                <div th:include="patients/patient :: patient"></div>
+            </div>
+            <div  id="updatePatientDiv" class="layui-tab-item" style="display:none;">
+                <div th:include="patients/patientUpdate :: updatePatient"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/auth/patientManage.js"></script>
+<script th:inline="javascript">
+        var flag=/*[[${flag==null ?'':flag}]]*/;
+    </script>
+</body>
+</html>

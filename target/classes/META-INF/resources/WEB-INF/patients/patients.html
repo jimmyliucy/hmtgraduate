@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='患者信息'"></head>
+<script th:inline="javascript">
+    var patientList=/*[[${patientList}]]*/;
+    console.log(patientList);
+</script>
+<body>
+<div th:fragment="patients">
+
+    <!--<div class="demoTable">
+        &nbsp;&nbsp;<button class="layui-btn" onclick="addPatient(0)">新增患者</button>
+    </div>-->
+
+    <div id="patientTable" class="grid"></div>
+    <script id="patientView" type="text/html">
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <th>患者姓名</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>家庭地址</th>
+                <th>过敏史</th>
+                <th>家族遗传病</th>
+                <th>症状</th>
+                <th style="sort=true">文化程度</th>
+                <th>电话</th>
+                <th>住院号</th>
+                <th>初步诊断</th>
+                <th>既往病史</th>
+                <th>既往麻醉</th>
+                <th>婚姻</th>
+                <th style="sort=true">发病时间</th>
+                <th style="sort=true">创建日期</th>
+                <th style="width:100px;align=center">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{# layui.each(d.rows,function(index,r){ }}
+            <tr>
+                <td>{{r.name}}</td>
+                <td>{{r.age}}</td>
+                <td>{{r.sex}}</td>
+                <td>{{r.adress}}</td>
+                <td>{{r.allergy}}</td>
+                <td>{{r.familyDisease}}</td>
+                <td>{{r.symptom}}</td>
+                <td>{{r.degree}}</td>
+                <td>{{r.phoneNo}}</td>
+                <td>{{r.hispitalNo}}</td>
+                <td>{{r.primaryDiagnosis}}</td>
+                <td>{{r.historyDisease}}</td>
+                <td>{{r.historyAnesthesia}}</td>
+                <td>{{r.marriage}}</td>
+                <td>{{layui.util.toDateString(r.illnessTime, "yyyy-MM-dd")}}</td>
+                <td>{{layui.util.toDateString(r.createDate, "yyyy-MM-dd HH:mm:ss")}}</td>
+                <td><a class="layui-btn layui-btn-primary layui-btn-xs" onclick="edit('{{r.id}}');">编辑</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" onclick="del('{{r.id}}','{{r.name}}')">删除</a>
+                </td>
+            </tr>
+            {{# }); }}
+            </tbody>
+        </table>
+    </script>
+</div>
+
+
+<!--添加或编辑权限-->
+<div id="updatePatient" class="layer_self_wrap" style="width:500px;display:none;">
+    <form id="patientForm" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
+        <input id="id" type="hidden" name="id"/>
+        <div class="layui-form-item">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-inline">
+                <input name="name" lay-verify="required" autocomplete="off" class="layui-input" type="text"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-inline">
+                <input name="sex" value="1" title="男" checked="" type="radio"/>
+                <input name="sex" value="0" title="女" type="radio"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">年龄</label>
+            <div class="layui-input-inline">
+                <input name="age" lay-verify="required|number" autocomplete="off" class="layui-input" type="text"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">文化程度</label>
+            <div class="layui-input-inline">
+                <select name="degree">
+                    <option value="">选择学历</option>
+                    <option value="0">小学未毕业</option>
+                    <option value="1">小学</option>
+                    <option value="2">初中</option>
+                    <option value="3">高中</option>
+                    <option value="4">大学</option>
+                    <option value="5">研究生</option>
+                    <option value="6">博士</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">结婚状态</label>
+            <div class="layui-input-inline">
+                <input name="marriage" value="0" title="未婚" checked="" type="radio"/>
+                <input name="marriage" value="1" title="已婚" type="radio"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">家庭地址</label>
+            <div class="layui-input-block">
+                <input name="adress" lay-verify="required" autocomplete="off" class="layui-input" type="text"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">发病时间</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="illnessTime" name="illnessTime" placeholder="yyyy-MM-dd" lay-verify="date">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">联系电话</label>
+            <div class="layui-input-inline">
+                <input name="phoneNo" lay-verify="required|phone" autocomplete="off" class="layui-input" type="text"/>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">过敏史</label>
+            <div class="layui-input-block">
+                <input name="allergy" autocomplete="off" class="layui-input" type="text"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">既往病史</label>
+            <div class="layui-input-block">
+                <input name="historyDisease" autocomplete="off" class="layui-input" type="text"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">遗传病</label>
+            <div class="layui-input-block">
+                <input name="familyDisease" autocomplete="off" class="layui-input" type="text"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">既往麻醉</label>
+            <div class="layui-input-block" >
+                <input name="historyAnesthesia" autocomplete="off" class="layui-input" type="text"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">症状</label>
+            <div class="layui-input-block">
+                <input name="symptom" lay-verify="required" autocomplete="off" class="layui-input" type="text" />
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">初步诊断</label>
+            <div class="layui-input-block">
+                <textarea name="primaryDiagnosis" placeholder="请输入内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block" style="margin-left: 10px;">
+                <button class="layui-btn"  lay-submit="" lay-filter="patientSubmit">提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="/js/dateUtils.js"></script>
+<script type="text/javascript" th:src="@{/js/patients/patients.js}"></script>
+
+</body>
+</html>

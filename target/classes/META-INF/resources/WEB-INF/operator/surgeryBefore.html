@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="layout :: htmlhead" th:with="title='患者信息'"></head>
+<script type="text/javascript" src="/js/dateUtils.js"></script>
+<body>
+<div th:fragment="surgeryBefore">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>患者信息登记</legend>
+    </fieldset>
+    <input id="patientId" type="hidden" name="patientId"/>
+    <div id="addPatient" class="layer_self_wrap" >
+        <form id="patientForm" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
+            <div class="layui-form-item">
+                <label class="layui-form-label">姓名</label>
+                <div class="layui-input-inline">
+                    <input name="name" lay-verify="required" autocomplete="off" class="layui-input" type="text"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-inline">
+                    <input name="sex" value="1" title="男" checked="" type="radio"/>
+                    <input name="sex" value="0" title="女" type="radio"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">年龄</label>
+                <div class="layui-input-inline">
+                    <input name="age" lay-verify="required|number" autocomplete="off" class="layui-input" type="text"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">受教育年限</label>
+                <div class="layui-input-inline">
+                    <input name="degree" lay-verify="required|number" autocomplete="off" class="layui-input" type="text"/>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">结婚状态</label>
+                <div class="layui-input-inline">
+                    <input name="marriage" value="0" title="未婚" checked="" type="radio"/>
+                    <input name="marriage" value="1" title="已婚" type="radio"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">家庭地址</label>
+                <div class="layui-input-block">
+                    <input name="adress" lay-verify="required" autocomplete="off" class="layui-input" type="text"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">发病时间</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input" id="illnessTime" name="illnessTime" placeholder="yyyy-MM-dd" lay-verify="date">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">联系电话</label>
+                <div class="layui-input-inline">
+                    <input name="phoneNo" lay-verify="required|phone" autocomplete="off" class="layui-input" type="text"/>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">过敏史</label>
+                <div class="layui-input-block">
+                    <input name="allergy" autocomplete="off" class="layui-input" type="text"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">既往病史</label>
+                <div class="layui-input-block">
+                    <input name="historyDisease" autocomplete="off" class="layui-input" type="text"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">遗传病</label>
+                <div class="layui-input-block">
+                    <input name="familyDisease" autocomplete="off" class="layui-input" type="text"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">既往麻醉</label>
+                <div class="layui-input-block" >
+                    <input name="historyAnesthesia" autocomplete="off" class="layui-input" type="text"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">症状</label>
+                <div class="layui-input-block">
+                    <input name="symptom" lay-verify="required" autocomplete="off" class="layui-input" type="text" />
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">初步诊断</label>
+                <div class="layui-input-block">
+                    <textarea name="primaryDiagnosis" placeholder="请输入内容" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block" style="margin-left: 10px;">
+                    <button class="layui-btn" onclick="patientSubmit()" type="button">提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>MMSE测试</legend>
+    </fieldset>
+    <div id="setMMSE" class="layer_self_wrap" style="width:580px;">
+        <form id="mmseScoreForm" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否配合</label>
+                <div class="layui-input-block">
+                    <input name="coordinate" value="1" title="可以" type="radio"/>
+                    <input name="coordinate" value="2" title="不可以" type="radio"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">手术状态</label>
+                <div class="layui-input-block">
+                    <input name="status" value="1" title="手术前" type="radio"/>
+                    <input name="status" value="2" title="手术中" type="radio"/>
+                    <input name="status" value="3" title="手术后" type="radio"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <p class="question">1.今年的年份?</p>
+                <p>
+                    <input name="questionOne" value="1" title="对" type="radio"/>
+                    <input name="questionOne" value="0" title="错" type="radio"/>
+                </p>
+            </div>
+            <div class="layui-form-item">
+                <p class="question">2.现在是什么季节?</p>
+                <p>
+                    <input name="questionTwo" value="1" title="对" type="radio"/>
+                    <input name="questionTwo" value="0" title="错" type="radio"/>
+                </p>
+            </div>
+            <div class="layui-form-item">
+                <p class="question">3.现在是几月?</p>
+                <p>
+                    <input name="questionThr" value="1" title="对" type="radio"/>
+                    <input name="questionThr" value="0" title="错" type="radio"/>
+                </p>
+            </div>
+            <div class="layui-form-item">
+                <p class="question">4.今天是几号?</p>
+                <p>
+                    <input name="questionFour" value="1" title="对" type="radio"/>
+                    <input name="questionFour" value="0" title="错" type="radio"/>
+                </p>
+            </div>
+            <div class="layui-form-item">
+                <p class="question">5.今天是星期几?</p>
+                <p>
+                    <input name="questionFive" value="1" title="对" type="radio"/>
+                    <input name="questionFive" value="0" title="错" type="radio"/>
+                </p>
+            </div>
+            <div class="layui-form-item">
+                <p class="question">6.现在我们在哪个省、市?</p>
+                <p>
+                    <input name="questionSix" value="1" title="对" type="radio"/>
+                    <input name="questionSix" value="0" title="错" type="radio"/>
+                </p>
+            </div>
+            <div class="layui-form-item">
+                <p class="question">7.你住在什么区(县)?</p>
+                <p>
+                    <input name="questionSev" value="1" title="对" type="radio"/>
+                    <input name="questionSev" value="0" title="错" type="radio"/>
+                </p>
+            </div>
+            <div class="layui-form-item">
+                <p class="question">8.住在什么街道?</p>
+                <p>
+                    <input name="questionEig" value="1" title="对" type="radio"/>
+                    <input name="questionEig" value="0" title="错" type="radio"/>
+                </p>
+            </div>
+            <div class="layui-form-item">
+                <p class="question">9.我们现在是第几层楼?</p>
+                <p>
+                    <input name="questionNine" value="1" title="对" type="radio"/>
+                    <input name="questionNine" value="0" title="错" type="radio"/>
+                </p>
+            </div>
+            <div class="layui-form-item">
+                <p class="question">10.这儿是什么地方?</p>
+                <p>
+                    <input name="questionTen" value="1" title="对" type="radio"/>
+                    <input name="questionTen" value="0" title="错" type="radio"/>
+                </p>
+            </div>
+            <div class="layui-form-item">
+                <p class="question">11.现在我要说三样东西的名称,在我讲完之后,请你重复说一遍,请你记住这样三样东西,因为等下要再问你的(请仔细说清楚,每一样东西一秒钟)。
+                    “皮球”“国旗”“树木”
+                    请你把这三样东西说一遍(以第1次答案计分,每对1个计1分)。</p>
+                <p>
+                    <input name="questionTone" value="0" title="0分" type="radio"/>
+                    <input name="questionTone" value="1" title="1分" type="radio"/>
+                    <input name="questionTone" value="2" title="2分" type="radio"/>
+                    <input name="questionTone" value="3" title="3分" type="radio"/>
+                </p>
+            </div>
+            <div class="layui-form-item">
+                <p class="question">12.现在请你从100减去7,然后从所得的数目再减去7,如此一直计算下去,把每一个答案都告诉我,
+                    直到我说“停”为止。(若错了,但下一个答案是对的,那么只记一次错误)
+                    93、86、79、72、65</p>
+                <p>
+                    <input name="questionTtwo" value="0" title="0分" type="radio"/>
+                    <input name="questionTtwo" value="1" title="1分" type="radio"/>
+                    <input name="questionTtwo" value="2" title="2分" type="radio"/>
+                    <input name="questionTtwo" value="3" title="3分" type="radio"/>
+                    <input name="questionTtwo" value="4" title="4分" type="radio"/>
+                    <input name="questionTtwo" value="5" title="5分" type="radio"/>
+                </p>
+            </div>
+            <div class="layui-form-item">
+                <p class="question">13.现在请你告诉我,刚才我要你记住的三样东西是什么？(每对一个计一分)(在17题后进行);皮球、国旗、树木</p>
+                <p>
+                    <input name="questionTthr" value="0" title="0分" type="radio"/>
+                    <input name="questionTthr" value="1" title="1分" type="radio"/>
+                    <input name="questionTthr" value="2" title="2分" type="radio"/>
+                    <input name="questionTthr" value="3" title="3分" type="radio"/>
+                </p>
+            </div>
+            <div class="layui-form-item">
+                <p class="question">14.(测试人员拿出手表)请问这是什么？(答对计1分)</p>
+                <p>
+                    <input name="questionTfour" value="1" title="对" type="radio"/>
+                    <input name="questionTfour" value="0" title="错" type="radio"/>
+                </p>
+            </div>
+            <div class="layui-form-item">
+                <p class="question">15.(测试人员拿出铅笔)请问这是什么？(答对计1分)</p>
+                <p>
+                    <input name="questionTfive" value="1" title="对" type="radio"/>
+                    <input name="questionTfive" value="0" title="错" type="radio"/>
+                </p>
+            </div>
+            <div class="layui-form-item">
+                <p class="question">16.现在我要说一句话,请清楚地重复一遍,这句话是“四十四只石狮子”(只许说一遍,只有正确、咬字清楚的才记1分)
+                    正确不清楚拒绝</p>
+                <p>
+                    <input name="questionTsix" value="1" title="对" type="radio"/>
+                    <input name="questionTsix" value="0" title="错" type="radio"/>
+                </p>
+            </div>
+            <div class="layui-form-item">
+                <p class="question">17.(测试人员把写有“闭上您的眼睛”大字的卡片交给受试者)
+                    请照着这张卡片所写的去做。(如果他闭上眼睛,记1分)</p>
+                <p>
+                    <input name="questionTsev" value="1" title="对" type="radio"/>
+                    <input name="questionTsev" value="0" title="错" type="radio"/>
+                </p>
+            </div>
+            <div class="layui-form-item">
+                <p class="question">18.(测试人员说下面一段话,并给他一张白纸,不要重复说明,也不要示范)
+                    给一张白纸:“请照我说的做,我只说一遍。请用右手拿这张白纸,再用双手把纸对折,然后将纸放在你的大腿上。
+                    用右手拿纸(1分);把纸对折(1分);放在大腿上(1分)</p>
+                <p>
+                    <input name="questionTeig" value="0" title="0分" type="radio"/>
+                    <input name="questionTeig" value="1" title="1分" type="radio"/>
+                    <input name="questionTeig" value="2" title="2分" type="radio"/>
+                    <input name="questionTeig" value="3" title="3分" type="radio"/>
+                </p>
+            </div>
+            <div class="layui-form-item">
+                <p class="question">19.请你说一句完整的、有意义的句子(句子必须有主语、动词),记下所叙述句子的全文</p>
+                <p>
+                    <input name="questionTnin" value="1" title="对" type="radio"/>
+                    <input name="questionTnin" value="0" title="错" type="radio"/>
+                </p>
+            </div>
+            <div class="layui-form-item">
+                <p class="question">20.(测试人员把卡片交给受访者):这是一张图,请你在同一张纸上照样把它画出来。</p>
+                <p>
+                    <input name="questionWt" value="1" title="对" type="radio"/>
+                    <input name="questionWt" value="0" title="错" type="radio"/>
+                </p>
+            </div>
+            <div class="layui-form-item">
+                <div style="margin-left:10px;">
+                    <button class="layui-btn" type="button" onclick="mmseSubmit()">提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>CAM测试</legend>
+    </fieldset>
+
+    <div id="addCam" class="layer_self_wrap" >
+        <div id="setCAM" class="layer_self_wrap" style="width:580px">
+            <form id="camForm" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">手术状态</label>
+                    <div class="layui-input-block">
+                        <select name="status">
+                            <option value="">请选择--手术状态</option>
+                            <option value="1">手术前</option>
+                            <option value="2">手术中</option>
+                            <option value="3">手术后</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">急性起病</label>
+                    <div class="layui-input-block">
+                        <select name="acute">
+                            <option value="">请选择--急性起病</option>
+                            <option value="1">不存在</option>
+                            <option value="2">较轻:三天至一周</option>
+                            <option value="3">中度:一天至三天</option>
+                            <option value="4">严重:一天之内</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">注意障碍</label>
+                    <div class="layui-input-block">
+                        <select name="attention">
+                            <option value="">请选择--注意障碍</option>
+                            <option value="1">不存在</option>
+                            <option value="2">轻度:1——2个错误</option>
+                            <option value="3">中度:3——4个错误</option>
+                            <option value="4">严重:5个或5个以上的错误</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">思维混乱</label>
+                    <div class="layui-input-block">
+                        <select name="thinking">
+                            <option value="">请选择--思维混乱</option>
+                            <option value="1">不存在</option>
+                            <option value="2">轻度:偶尔短暂的言语模糊或不可理解,但尚能顺利交谈</option>
+                            <option value="3">中度:经常短暂的言语不可理解,对交谈有明显的影响</option>
+                            <option value="4">严重:大多数的时间言语不可理解,难以进行有效的交谈</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">意识水平的改变</label>
+                    <div class="layui-input-block">
+                        <select name="sence">
+                            <option value="">请选择--意识水平的改变</option>
+                            <option value="1">不存在:机敏(正常)</option>
+                            <option value="2">轻度:警觉(对环境刺激高度警惕、过度敏感)</option>
+                            <option value="3">中度:嗜睡(瞌睡,但易于唤醒)或昏睡(难以唤醒)</option>
+                            <option value="4">严重:昏迷(不能唤醒)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">定向障碍</label>
+                    <div class="layui-input-block">
+                        <select name="directional">
+                            <option value="">请选择--定向障碍</option>
+                            <option value="1">不存在</option>
+                            <option value="2">轻度:偶尔短暂地存在时间或地点的定向错误(接近正确),但可自行纠正</option>
+                            <option value="3">中度:经常存在时间或地点的定向的错误,但自我定向好</option>
+                            <option value="4">严重:时间、地点及自我定向均差</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">记忆力减退</label>
+                    <div class="layui-input-block">
+                        <select name="memoryLoss">
+                            <option value="">请选择--记忆力减退</option>
+                            <option value="1">不存在</option>
+                            <option value="2">轻度:有一个词不能回忆或回忆错误</option>
+                            <option value="3">中度:有两个词不能回忆或回忆错误</option>
+                            <option value="4">严重:有三个词不能回忆或回忆错误</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">知觉障碍</label>
+                    <div class="layui-input-block">
+                        <select name="perceptionDisorders">
+                            <option value="">请选择--知觉障碍</option>
+                            <option value="1">不存在</option>
+                            <option value="2">轻度:只存在幻听</option>
+                            <option value="3">中度:存在幻视,有或没有幻听</option>
+                            <option value="4">严重:存在幻触、幻嗅或幻味,有或没有幻听</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">精神运动性兴奋</label>
+                    <div class="layui-input-block">
+                        <select name="psychoSportExcitement">
+                            <option value="">请选择--精神运动性兴奋</option>
+                            <option value="1">不存在</option>
+                            <option value="2">轻度:偶有坐立不安,焦虑、轻敲手指及抖动</option>
+                            <option value="3">中度:反复无目的地走动、激越明显</option>
+                            <option value="4">严重:行为杂乱无章,需要约束</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">精神运动性迟缓</label>
+                    <div class="layui-input-block">
+                        <select name="mentalSportSlow">
+                            <option value="">请选择--精神运动性迟缓</option>
+                            <option value="1">不存在</option>
+                            <option value="2">轻度:偶尔地比先前的活动、行为及动作缓慢</option>
+                            <option value="3">中度:经常保持一种姿势</option>
+                            <option value="4">严重:木僵状态</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">波动性</label>
+                    <div class="layui-input-block">
+                        <select name="wave">
+                            <option value="">请选择--波动性</option>
+                            <option value="1">不存在</option>
+                            <option value="2">轻度:一天之中偶尔地波动</option>
+                            <option value="3">中度:症状在夜间加重</option>
+                            <option value="4">严重:症状在一天中剧烈波动</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">睡眠—觉醒周期</label>
+                    <div class="layui-input-block">
+                        <select name="sleepWakeCycle">
+                            <option value="">请选择--睡眠—觉醒周期</option>
+                            <option value="1">不存在</option>
+                            <option value="2">轻度:日间偶有瞌睡,且夜间时睡时醒</option>
+                            <option value="3">中度:日间经常瞌睡,且夜间时睡时醒或不能入睡</option>
+                            <option value="4">严重:日间经常昏睡而影响交谈,且夜间不能入睡</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block" style="margin-left: 10px;">
+                        <button class="layui-btn" type="button" onclick="camSubmit()">提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript" th:src="@{/js/operator/surgeryBefore.js}"></script>
+
+</div>
+</body>
+</html>
