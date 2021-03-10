@@ -21,5 +21,6 @@ public class AdminApplication {
 		// 禁用命令行更改application.properties属性
 		sa.setAddCommandLineProperties(false);
 		sa.run(args);
+		String name = null;
 	}
 }
