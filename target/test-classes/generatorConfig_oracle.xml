@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+ PUBLIC " -//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+ "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+<!--     <classPathEntry location="G:\Maven_Repository\Central\com\oracle\ojdbc6\11.2.0.1.0\ojdbc6-11.2.0.1.0.jar" /> -->
+
+	<!-- mvn clean compile package install -f pom-mybatis.xml mybatis-generator:generate -D mybatis.generator.overwrite=true -->
+
+	<context id="my" targetRuntime="com.hmt.generatemapper.introspected.ClearIntrospectedTable">
+		<!-- 生成的Java文件的编码 -->
+		<property name="javaFileEncoding" value="UTF-8" />
+		<!-- 格式化java代码 -->
+		<property name="javaFormatter"
+			value="org.mybatis.generator.api.dom.DefaultJavaFormatter" />
+		<!-- 格式化XML代码 -->
+		<property name="xmlFormatter"
+			value="org.mybatis.generator.api.dom.DefaultXmlFormatter" />
+			
+			
+		<plugin type="com.hmt.generatemapper.plugin.MapperGenerateCustomAnnotationPlugin" />
+		<plugin type="com.hmt.generatemapper.plugin.MapperGenerateOverIsMergeablePlugin" />
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin> 
+		<plugin type="com.hmt.generatemapper.plugin.MapperModelSerializablePlugin"></plugin>
+<!-- 
+		<commentGenerator>
+			<property name="suppressDate" value="false" />
+			<property name="suppressAllComments" value="false" />
+		</commentGenerator>
+ -->                               
+		<commentGenerator type="com.hmt.generatemapper.generator.ClearCommentGenerator">
+            <property name="author" value="liucy@kftpay.com"/>
+            <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss"/>
+            <property name="suppressDate" value="false" />
+			<property name="suppressAllComments" value="true" />
+			<property name="generateExt" value="true"/>
+        </commentGenerator> 
+
+
+
+		<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+			connectionURL="jdbc:oracle:thin:@10.37.10.100:1521:kftdb" userId="kftcl"
+			password="kftpasswd">
+			<property name="remarksReporting" value="true"></property>
+			</jdbcConnection>
+
+
+		<javaTypeResolver
+			type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+
+		<!-- 生成model实体类 -->
+		<javaModelGenerator
+			targetPackage="com.hmt.graduate.paper.pojo"
+			targetProject="src\main\java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+
+		<!-- 生成mapper.xml配置文件位置 -->
+		<sqlMapGenerator
+			targetPackage="sqlmap"
+			targetProject="src\main\resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		
+		
+
+
+		<!-- 生成mapper接口 -->
+		<javaClientGenerator targetPackage="com.hmt.graduate.paper.dao"
+			type="com.hmt.generatemapper.generator.ClearJavaClientGenerator"
+			targetProject="src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>		
+
+
+		<!-- 需要生成的实体类对应的表名，多个实体类复制多份该配置即可 -->
+		
+
+		
+		
+		<table tableName="T_BANK_FILE_NOTIFY_INFO" domainObjectName="CrossBankFileNotifyModel"  mapperName = "CrossBankFileNotifyMapper" />
+	</context>
+</generatorConfiguration>

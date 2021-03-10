@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmt.graduate.paper.dao.MmseScoreMapper">
+  <resultMap id="BaseResultMap" type="com.hmt.graduate.paper.pojo.MmseScore">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="patient_id" jdbcType="INTEGER" property="patientId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="question_thr" jdbcType="INTEGER" property="questionThr" />
+    <result column="question_two" jdbcType="INTEGER" property="questionTwo" />
+    <result column="question_one" jdbcType="INTEGER" property="questionOne" />
+    <result column="crate_time" jdbcType="TIMESTAMP" property="crateTime" />
+    <result column="question_four" jdbcType="INTEGER" property="questionFour" />
+    <result column="question_five" jdbcType="INTEGER" property="questionFive" />
+    <result column="question_six" jdbcType="INTEGER" property="questionSix" />
+    <result column="question_sev" jdbcType="INTEGER" property="questionSev" />
+    <result column="question_eig" jdbcType="INTEGER" property="questionEig" />
+    <result column="question_nine" jdbcType="INTEGER" property="questionNine" />
+    <result column="question_ten" jdbcType="INTEGER" property="questionTen" />
+    <result column="question_tone" jdbcType="INTEGER" property="questionTone" />
+    <result column="question_ttwo" jdbcType="INTEGER" property="questionTtwo" />
+    <result column="question_tthr" jdbcType="INTEGER" property="questionTthr" />
+    <result column="question_tfour" jdbcType="INTEGER" property="questionTfour" />
+    <result column="question_tfive" jdbcType="INTEGER" property="questionTfive" />
+    <result column="question_tsix" jdbcType="INTEGER" property="questionTsix" />
+    <result column="question_tsev" jdbcType="INTEGER" property="questionTsev" />
+    <result column="question_teig" jdbcType="INTEGER" property="questionTeig" />
+    <result column="question_tnin" jdbcType="INTEGER" property="questionTnin" />
+    <result column="question_wt" jdbcType="INTEGER" property="questionWt" />
+    <result column="question_wone" jdbcType="INTEGER" property="questionWone" />
+    <result column="coordinate" jdbcType="INTEGER" property="coordinate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, patient_id, status, question_thr, question_two, question_one, crate_time, question_four,
+    question_five, question_six, question_sev, question_eig, question_nine, question_ten, 
+    question_tone, question_ttwo, question_tthr, question_tfour, question_tfive, question_tsix, 
+    question_tsev, question_teig, question_tnin, question_wt, question_wone, coordinate
+  </sql>
+
+  <select id="selectMmseByPatientId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>, question_one+question_two+question_thr+
+    question_four+question_five+question_six+question_sev+question_eig+question_nine+
+    question_ten+question_tone+question_ttwo+question_tthr+question_tfour+
+    question_tfive+question_tsix+question_tsev+question_teig+question_tnin+
+    question_wt as score
+    from mmse_score
+    <where>
+      patient_id = #{patientId,jdbcType=INTEGER}
+    </where>
+  </select>
+
+  <insert id="insert" parameterType="com.hmt.graduate.paper.pojo.MmseScore">
+    insert into mmse_score (patient_id, status,
+      question_thr, question_two, question_one, 
+      crate_time, question_four, question_five, 
+      question_six, question_sev, question_eig, 
+      question_nine, question_ten, question_tone, 
+      question_ttwo, question_tthr, question_tfour, 
+      question_tfive, question_tsix, question_tsev, 
+      question_teig, question_tnin, question_wt, 
+      question_wone, coordinate)
+    values (#{patientId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},
+      #{questionThr,jdbcType=INTEGER}, #{questionTwo,jdbcType=INTEGER}, #{questionOne,jdbcType=INTEGER}, 
+      #{crateTime,jdbcType=TIMESTAMP}, #{questionFour,jdbcType=INTEGER}, #{questionFive,jdbcType=INTEGER}, 
+      #{questionSix,jdbcType=INTEGER}, #{questionSev,jdbcType=INTEGER}, #{questionEig,jdbcType=INTEGER}, 
+      #{questionNine,jdbcType=INTEGER}, #{questionTen,jdbcType=INTEGER}, #{questionTone,jdbcType=INTEGER}, 
+      #{questionTtwo,jdbcType=INTEGER}, #{questionTthr,jdbcType=INTEGER}, #{questionTfour,jdbcType=INTEGER}, 
+      #{questionTfive,jdbcType=INTEGER}, #{questionTsix,jdbcType=INTEGER}, #{questionTsev,jdbcType=INTEGER}, 
+      #{questionTeig,jdbcType=INTEGER}, #{questionTnin,jdbcType=INTEGER}, #{questionWt,jdbcType=INTEGER}, 
+      #{questionWone,jdbcType=INTEGER}, #{coordinate,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hmt.graduate.paper.pojo.MmseScore">
+    insert into mmse_score
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="patientId != null">
+        patient_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="questionThr != null">
+        question_thr,
+      </if>
+      <if test="questionTwo != null">
+        question_two,
+      </if>
+      <if test="questionOne != null">
+        question_one,
+      </if>
+      <if test="crateTime != null">
+        crate_time,
+      </if>
+      <if test="questionFour != null">
+        question_four,
+      </if>
+      <if test="questionFive != null">
+        question_five,
+      </if>
+      <if test="questionSix != null">
+        question_six,
+      </if>
+      <if test="questionSev != null">
+        question_sev,
+      </if>
+      <if test="questionEig != null">
+        question_eig,
+      </if>
+      <if test="questionNine != null">
+        question_nine,
+      </if>
+      <if test="questionTen != null">
+        question_ten,
+      </if>
+      <if test="questionTone != null">
+        question_tone,
+      </if>
+      <if test="questionTtwo != null">
+        question_ttwo,
+      </if>
+      <if test="questionTthr != null">
+        question_tthr,
+      </if>
+      <if test="questionTfour != null">
+        question_tfour,
+      </if>
+      <if test="questionTfive != null">
+        question_tfive,
+      </if>
+      <if test="questionTsix != null">
+        question_tsix,
+      </if>
+      <if test="questionTsev != null">
+        question_tsev,
+      </if>
+      <if test="questionTeig != null">
+        question_teig,
+      </if>
+      <if test="questionTnin != null">
+        question_tnin,
+      </if>
+      <if test="questionWt != null">
+        question_wt,
+      </if>
+      <if test="questionWone != null">
+        question_wone,
+      </if>
+      <if test="coordinate != null">
+        coordinate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="patientId != null">
+        #{patientId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="questionThr != null">
+        #{questionThr,jdbcType=INTEGER},
+      </if>
+      <if test="questionTwo != null">
+        #{questionTwo,jdbcType=INTEGER},
+      </if>
+      <if test="questionOne != null">
+        #{questionOne,jdbcType=INTEGER},
+      </if>
+      <if test="crateTime != null">
+        #{crateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="questionFour != null">
+        #{questionFour,jdbcType=INTEGER},
+      </if>
+      <if test="questionFive != null">
+        #{questionFive,jdbcType=INTEGER},
+      </if>
+      <if test="questionSix != null">
+        #{questionSix,jdbcType=INTEGER},
+      </if>
+      <if test="questionSev != null">
+        #{questionSev,jdbcType=INTEGER},
+      </if>
+      <if test="questionEig != null">
+        #{questionEig,jdbcType=INTEGER},
+      </if>
+      <if test="questionNine != null">
+        #{questionNine,jdbcType=INTEGER},
+      </if>
+      <if test="questionTen != null">
+        #{questionTen,jdbcType=INTEGER},
+      </if>
+      <if test="questionTone != null">
+        #{questionTone,jdbcType=INTEGER},
+      </if>
+      <if test="questionTtwo != null">
+        #{questionTtwo,jdbcType=INTEGER},
+      </if>
+      <if test="questionTthr != null">
+        #{questionTthr,jdbcType=INTEGER},
+      </if>
+      <if test="questionTfour != null">
+        #{questionTfour,jdbcType=INTEGER},
+      </if>
+      <if test="questionTfive != null">
+        #{questionTfive,jdbcType=INTEGER},
+      </if>
+      <if test="questionTsix != null">
+        #{questionTsix,jdbcType=INTEGER},
+      </if>
+      <if test="questionTsev != null">
+        #{questionTsev,jdbcType=INTEGER},
+      </if>
+      <if test="questionTeig != null">
+        #{questionTeig,jdbcType=INTEGER},
+      </if>
+      <if test="questionTnin != null">
+        #{questionTnin,jdbcType=INTEGER},
+      </if>
+      <if test="questionWt != null">
+        #{questionWt,jdbcType=INTEGER},
+      </if>
+      <if test="questionWone != null">
+        #{questionWone,jdbcType=INTEGER},
+      </if>
+      <if test="coordinate != null">
+        #{coordinate,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>
