@@ -42,11 +42,8 @@ $(function() {
         //监听工具条
         table.on('tool(patientTable)', function(obj){
             var data = obj.data;
-            if(obj.event === 'beforeEvalaute'){
-               // beforeEvalaute(data.id, data.name);
-            } else if(obj.event === 'detailPatient'){
-                //新增cam测试
-               // detailPatient(data.id,data.name);
+            if(obj.event === 'surgeryedCAM'){
+                surgeryedCAM(data.id, data.name);
             }
         });
         //监听提交
@@ -76,6 +73,12 @@ $(function() {
         });
     });
 });
+
+function surgeryedCAM(id, name) {
+    if (isBlank(id)) {
+        layer.alert("未获取到患者id");
+    }
+}
 
 function load(obj){
     //重新加载table
