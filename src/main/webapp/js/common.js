@@ -25,6 +25,13 @@ function getEnumCacheByCode(keyCode, code) {
     return null;
 }
 
+function isBlank(charator) {
+    if (charator !== null || charator !== undefined || charator !== '') {
+        return false;
+    }
+    return true;
+}
+
 /**
  * 公用的js函数文件
  * 伪造http referer信息

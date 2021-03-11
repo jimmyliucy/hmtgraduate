@@ -13,6 +13,11 @@ $(function() {
 });
 
     function mmseSubmit() {
+        var patient = $("patientId").val();
+        if (isBlank(patient)) {
+            layer.alert("请返回上一页提交患者信息后再进行本次操作");
+        }
+        $("mmsePatientId").val(patient);
         $.ajax({
             type: "POST",
             data: $("#mmseScoreForm").serialize(),
@@ -55,6 +60,11 @@ $(function() {
     }
 
     function camSubmit() {
+        var patient = $("patientId").val();
+        if (isBlank(patient)) {
+            layer.alert("请返回上一页提交患者信息后再进行本次操作");
+        }
+        $("camPatientId").val(patient);
         $.ajax({
             type: "POST",
             data: $("#camForm").serialize(),

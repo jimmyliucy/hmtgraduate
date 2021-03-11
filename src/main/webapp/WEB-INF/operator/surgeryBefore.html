@@ -10,7 +10,7 @@
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
             <legend>患者信息登记</legend>
         </fieldset>
-        <input name="patientId" lay-verify="required" autocomplete="off" class="layui-input" type="text"/>
+        <input name="patientId" id="patientId" type="hidden"/>
         <form id="patientForm" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
             <div class="layui-form-item">
                 <label class="layui-form-label">姓名</label>
@@ -116,6 +116,7 @@
             <legend>MMSE测试</legend>
         </fieldset>
         <form id="mmseScoreForm" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
+            <input name="mmsePatientId" id="mmsePatientId" type="hidden"/>
             <div class="layui-form-item">
                 <label class="layui-form-label">是否配合</label>
                 <div class="layui-input-block">
@@ -307,6 +308,7 @@
             </fieldset>
 
             <form id="camForm" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
+                <input name="camPatientId" id="camPatientId" type="hidden"/>
                 <div class="layui-form-item">
                     <label class="layui-form-label">手术状态</label>
                     <div class="layui-input-block">

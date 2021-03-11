@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="/js/ztree/css/zTreeStyle/zTreeStyle.css"></link>
+<head th:include="layout :: htmlhead" th:with="title='数据录入'"></head>
+<body>
+
+<div  class="layui-container" style="width: 100%">
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+        <ul class="layui-tab-title">
+            <li id="patients" class="layui-this">患者列表</li>
+            <li id="surgeryBefore">手术前</li>
+            <li id="surgerying">手术中</li>
+            <li id="surgeryAfter">手术后</li>//style="display:none;"
+        </ul>
+        <div class="layui-tab-content" style="height: 100px;">
+            <div id="patientsDiv" class="layui-tab-item layui-show">
+                <div th:include="patients/patientsList :: patientsList"></div>
+            </div>
+            <div id="surgeryBeforeDiv" class="layui-tab-item">
+                <div th:include="operator/surgeryBefore :: surgeryBefore"></div>
+            </div>
+            <div id="surgeryingDiv" class="layui-tab-item">
+                33<!--<div th:include="auth/role :: role"></div>-->
+            </div>
+            <div  id="surgeryAfterDiv" class="layui-tab-item">
+                44<!--<div th:include="auth/roleUpdate :: updateRole"></div>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/operator/record.js"></script>
+<script th:inline="javascript">
+    var flag=/*[[${flag==null ?'':flag}]]*/;
+</script>
+</body>
+</html>
