@@ -78,6 +78,7 @@ function surgeryedCAM(id, name) {
     if (isBlank(id)) {
         layer.alert("未获取到患者id");
     }
+
 }
 
 function load(obj){
