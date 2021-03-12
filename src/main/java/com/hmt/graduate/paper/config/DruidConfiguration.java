@@ -42,4 +42,11 @@ public class DruidConfiguration {
 		return filterRegistrationBean;
 	}
 
+	@Bean
+	public MapperScannerConfigurer mapperScannerConfigurer(@Value("${mybatis.basePackage}") String basePackage) {
+		MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
+		mapperScannerConfigurer.setBasePackage(basePackage);
+		return mapperScannerConfigurer;
+	}
+
 }
