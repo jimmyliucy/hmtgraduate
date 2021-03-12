@@ -42,10 +42,21 @@ public class DruidConfiguration {
 		return filterRegistrationBean;
 	}
 
+	/**
+	 * <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	 * 		<property name="basePackage" value="com.lycheepay.clearing" />
+	 * 		<property name="nameGenerator" ref="clearAnnotationBeanNameGenerator"/>
+	 * 		<property name="annotationClass" value="com.lycheepay.clearing.annotation.NamedMapper" />  <!-- 添加了NamedMapper注解的接口才实列话成mapper实例 -->
+	 * 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	 * 	</bean>
+	 * @param basePackage
+	 * @return
+	 */
 	@Bean
-	public MapperScannerConfigurer mapperScannerConfigurer(@Value("${mybatis.basePackage}") String basePackage) {
+	public MapperScannerConfigurer mapperScannerConfigurer(@Value("${com.hmt.graduate.paper.dao}") String basePackage) {
 		MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
 		mapperScannerConfigurer.setBasePackage(basePackage);
+		mapperScannerConfigurer.setNameGenerator();
 		return mapperScannerConfigurer;
 	}
 
