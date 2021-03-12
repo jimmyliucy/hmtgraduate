@@ -74,11 +74,43 @@ $(function() {
     });
 });
 
-function surgeryedCAM(id, name) {
-    if (isBlank(id)) {
+function surgeryedCAM(patientId, name) {
+    if (isBlank(patientId)) {
         layer.alert("未获取到患者id");
     }
+    $("#camPatientId").val(patientId);
+    layer.open({
+        type:1,
+        title: name + "--谵妄测试",
+        fixed:false,
+        resize :false,
+        shadeClose: true,
+        area: ['600px', '680px'],
+        content:$('#setCAM'),
+        end:function(){
+            cleanSearch();
+        }
+    });
+}
 
+function cleanSearch(){
+//    $("#name").val("");
+//    $("#hispitalNo").val("");
+    $("#patientId").val("");
+    $("#id").val("");
+    $("#pageNum").val("");
+    $("select[name='status']").get(0).selectedIndex;
+    $("select[name='acute']").get(0).selectedIndex;
+    $("select[name='attention']").get(0).selectedIndex;
+    $("select[name='thinking']").get(0).selectedIndex;
+    $("select[name='sence']").get(0).selectedIndex;
+    $("select[name='directional']").get(0).selectedIndex;
+    $("select[name='memoryLoss']").get(0).selectedIndex;
+    $("select[name='perceptionDisorders']").get(0).selectedIndex;
+    $("select[name='psychoSportExcitement']").get(0).selectedIndex;
+    $("select[name='mentalSportSlow']").get(0).selectedIndex;
+    $("select[name='wave']").get(0).selectedIndex;
+    $("select[name='sleepWakeCycle']").get(0).selectedIndex;
 }
 
 function load(obj){
