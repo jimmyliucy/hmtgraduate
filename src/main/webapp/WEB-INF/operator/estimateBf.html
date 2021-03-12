@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="layout :: htmlhead" th:with="title='患者信息'"></head>
+<script type="text/javascript" src="/js/dateUtils.js"></script>
+<body>
+<div th:fragment="estimateBf">
+
+    <div class="layui-card">
+        <div class="layui-card-body">
+
+            <form id="patientSearch" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">身份证号</label>
+                    <div class="layui-input-inline">
+                        <input id="idCard" name="idCard" autocomplete="on" class="layui-input" type="text"/>
+                    </div>
+                    <label class="layui-form-label">住院号</label>
+                    <div class="layui-input-inline">
+                        <input id="hispitalNo" name="hispitalNo" autocomplete="off" class="layui-input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"
+                               onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
+                    </div>
+                    <button class="layui-btn"  lay-submit="" lay-filter="searchSubmit">提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript" th:src="@{/js/operator/estimateBf.js}"></script>
+
+</div>
+</body>
+</html>

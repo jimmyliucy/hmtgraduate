@@ -7,29 +7,21 @@
 <div  class="layui-container" style="width: 100%">
     <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
         <ul class="layui-tab-title">
-            <li id="patients" class="layui-this">患者列表</li>
-            <li id="surgeryBefore">手术前</li>
-            <li id="surgerying">手术中</li>
-            <li id="surgeryAfter">手术后</li>//style="display:none;"
+            <li id="estimateBf">术前评估</li>
+            <li id="estimating">术中评测</li>
         </ul>
         <div class="layui-tab-content" style="height: 100px;">
-            <div id="patientsDiv" class="layui-tab-item layui-show">
-                <div th:include="patients/patientsList :: patientsList"></div>
+            <div id="estimateBfDiv" class="layui-tab-item layui-show">
+                <div th:include="operator/estimateBf :: estimateBf"></div>
             </div>
-            <div id="surgeryBeforeDiv" class="layui-tab-item">
-                <div th:include="operator/surgeryBefore :: surgeryBefore"></div>
-            </div>
-            <div id="surgeryingDiv" class="layui-tab-item">
-                33<!--<div th:include="auth/role :: role"></div>-->
-            </div>
-            <div  id="surgeryAfterDiv" class="layui-tab-item">
-                44<!--<div th:include="auth/roleUpdate :: updateRole"></div>-->
+            <div id="estimatingDiv" class="layui-tab-item">
+                <div th:include="operator/estimating :: estimating"></div>
             </div>
         </div>
     </div>
 </div>
 
-<script src="/js/operator/record.js"></script>
+<script src="/js/operator/estimate.js"></script>
 <script th:inline="javascript">
     var flag=/*[[${flag==null ?'':flag}]]*/;
 </script>
