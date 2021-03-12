@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmt.graduate.paper.dao.SurgeryBfEstimateMapperExt">
+  <resultMap id="BaseResultMap" type="com.hmt.graduate.paper.pojo.SurgeryBfEstimate">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="PATIENT_ID" jdbcType="BIGINT" property="patientId" />
+    <result column="AGE" jdbcType="INTEGER" property="age" />
+    <result column="SEX" jdbcType="CHAR" property="sex" />
+    <result column="EDU_YEAR" jdbcType="INTEGER" property="eduYear" />
+    <result column="SURGERY_HIS" jdbcType="INTEGER" property="surgeryHis" />
+    <result column="BRAIN_HIS" jdbcType="INTEGER" property="brainHis" />
+    <result column="DEPARTMENT" jdbcType="INTEGER" property="department" />
+    <result column="SURGERY_BF_ILLNESS" jdbcType="INTEGER" property="surgeryBfIllness" />
+    <result column="HOME_WORK" jdbcType="INTEGER" property="homeWork" />
+    <result column="PLAY_PK" jdbcType="INTEGER" property="playPk" />
+    <result column="PLAY_CHESS" jdbcType="INTEGER" property="playChess" />
+    <result column="READ_PAPER" jdbcType="INTEGER" property="readPaper" />
+    <result column="MON_EXCETS" jdbcType="INTEGER" property="monExcets" />
+    <result column="PLAY_KID" jdbcType="INTEGER" property="playKid" />
+    <result column="TRAVEL" jdbcType="INTEGER" property="travel" />
+    <result column="GXB_ILLNESS" jdbcType="INTEGER" property="gxbIllness" />
+    <result column="GXY_ILLNESS" jdbcType="INTEGER" property="gxyIllness" />
+    <result column="TNB_ILLNESS" jdbcType="INTEGER" property="tnbIllness" />
+    <result column="LUNG_ILLNESS" jdbcType="INTEGER" property="lungIllness" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PATIENT_ID, AGE, SEX, EDU_YEAR, SURGERY_HIS, BRAIN_HIS, DEPARTMENT, SURGERY_BF_ILLNESS, 
+    HOME_WORK, PLAY_PK, PLAY_CHESS, READ_PAPER, MON_EXCETS, PLAY_KID, TRAVEL, GXB_ILLNESS, 
+    GXY_ILLNESS, TNB_ILLNESS, LUNG_ILLNESS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from surgery_bf_estimate
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from surgery_bf_estimate
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hmt.graduate.paper.pojo.SurgeryBfEstimate">
+    insert into surgery_bf_estimate (ID, PATIENT_ID, AGE, 
+      SEX, EDU_YEAR, SURGERY_HIS, 
+      BRAIN_HIS, DEPARTMENT, SURGERY_BF_ILLNESS, 
+      HOME_WORK, PLAY_PK, PLAY_CHESS, 
+      READ_PAPER, MON_EXCETS, PLAY_KID, 
+      TRAVEL, GXB_ILLNESS, GXY_ILLNESS, 
+      TNB_ILLNESS, LUNG_ILLNESS)
+    values (#{id,jdbcType=BIGINT}, #{patientId,jdbcType=BIGINT}, #{age,jdbcType=INTEGER}, 
+      #{sex,jdbcType=CHAR}, #{eduYear,jdbcType=INTEGER}, #{surgeryHis,jdbcType=INTEGER}, 
+      #{brainHis,jdbcType=INTEGER}, #{department,jdbcType=INTEGER}, #{surgeryBfIllness,jdbcType=INTEGER}, 
+      #{homeWork,jdbcType=INTEGER}, #{playPk,jdbcType=INTEGER}, #{playChess,jdbcType=INTEGER}, 
+      #{readPaper,jdbcType=INTEGER}, #{monExcets,jdbcType=INTEGER}, #{playKid,jdbcType=INTEGER}, 
+      #{travel,jdbcType=INTEGER}, #{gxbIllness,jdbcType=INTEGER}, #{gxyIllness,jdbcType=INTEGER}, 
+      #{tnbIllness,jdbcType=INTEGER}, #{lungIllness,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hmt.graduate.paper.pojo.SurgeryBfEstimate">
+    insert into surgery_bf_estimate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="patientId != null">
+        PATIENT_ID,
+      </if>
+      <if test="age != null">
+        AGE,
+      </if>
+      <if test="sex != null">
+        SEX,
+      </if>
+      <if test="eduYear != null">
+        EDU_YEAR,
+      </if>
+      <if test="surgeryHis != null">
+        SURGERY_HIS,
+      </if>
+      <if test="brainHis != null">
+        BRAIN_HIS,
+      </if>
+      <if test="department != null">
+        DEPARTMENT,
+      </if>
+      <if test="surgeryBfIllness != null">
+        SURGERY_BF_ILLNESS,
+      </if>
+      <if test="homeWork != null">
+        HOME_WORK,
+      </if>
+      <if test="playPk != null">
+        PLAY_PK,
+      </if>
+      <if test="playChess != null">
+        PLAY_CHESS,
+      </if>
+      <if test="readPaper != null">
+        READ_PAPER,
+      </if>
+      <if test="monExcets != null">
+        MON_EXCETS,
+      </if>
+      <if test="playKid != null">
+        PLAY_KID,
+      </if>
+      <if test="travel != null">
+        TRAVEL,
+      </if>
+      <if test="gxbIllness != null">
+        GXB_ILLNESS,
+      </if>
+      <if test="gxyIllness != null">
+        GXY_ILLNESS,
+      </if>
+      <if test="tnbIllness != null">
+        TNB_ILLNESS,
+      </if>
+      <if test="lungIllness != null">
+        LUNG_ILLNESS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="patientId != null">
+        #{patientId,jdbcType=BIGINT},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="eduYear != null">
+        #{eduYear,jdbcType=INTEGER},
+      </if>
+      <if test="surgeryHis != null">
+        #{surgeryHis,jdbcType=INTEGER},
+      </if>
+      <if test="brainHis != null">
+        #{brainHis,jdbcType=INTEGER},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=INTEGER},
+      </if>
+      <if test="surgeryBfIllness != null">
+        #{surgeryBfIllness,jdbcType=INTEGER},
+      </if>
+      <if test="homeWork != null">
+        #{homeWork,jdbcType=INTEGER},
+      </if>
+      <if test="playPk != null">
+        #{playPk,jdbcType=INTEGER},
+      </if>
+      <if test="playChess != null">
+        #{playChess,jdbcType=INTEGER},
+      </if>
+      <if test="readPaper != null">
+        #{readPaper,jdbcType=INTEGER},
+      </if>
+      <if test="monExcets != null">
+        #{monExcets,jdbcType=INTEGER},
+      </if>
+      <if test="playKid != null">
+        #{playKid,jdbcType=INTEGER},
+      </if>
+      <if test="travel != null">
+        #{travel,jdbcType=INTEGER},
+      </if>
+      <if test="gxbIllness != null">
+        #{gxbIllness,jdbcType=INTEGER},
+      </if>
+      <if test="gxyIllness != null">
+        #{gxyIllness,jdbcType=INTEGER},
+      </if>
+      <if test="tnbIllness != null">
+        #{tnbIllness,jdbcType=INTEGER},
+      </if>
+      <if test="lungIllness != null">
+        #{lungIllness,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <sql id="SQL_ID_UPDATE_SET">
+    <set>
+      <if test="id != null">
+        ID = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="patientId != null">
+        PATIENT_ID = #{patientId,jdbcType=BIGINT},
+      </if>
+      <if test="age != null">
+        AGE = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        SEX = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="eduYear != null">
+        EDU_YEAR = #{eduYear,jdbcType=INTEGER},
+      </if>
+      <if test="surgeryHis != null">
+        SURGERY_HIS = #{surgeryHis,jdbcType=INTEGER},
+      </if>
+      <if test="brainHis != null">
+        BRAIN_HIS = #{brainHis,jdbcType=INTEGER},
+      </if>
+      <if test="department != null">
+        DEPARTMENT = #{department,jdbcType=INTEGER},
+      </if>
+      <if test="surgeryBfIllness != null">
+        SURGERY_BF_ILLNESS = #{surgeryBfIllness,jdbcType=INTEGER},
+      </if>
+      <if test="homeWork != null">
+        HOME_WORK = #{homeWork,jdbcType=INTEGER},
+      </if>
+      <if test="playPk != null">
+        PLAY_PK = #{playPk,jdbcType=INTEGER},
+      </if>
+      <if test="playChess != null">
+        PLAY_CHESS = #{playChess,jdbcType=INTEGER},
+      </if>
+      <if test="readPaper != null">
+        READ_PAPER = #{readPaper,jdbcType=INTEGER},
+      </if>
+      <if test="monExcets != null">
+        MON_EXCETS = #{monExcets,jdbcType=INTEGER},
+      </if>
+      <if test="playKid != null">
+        PLAY_KID = #{playKid,jdbcType=INTEGER},
+      </if>
+      <if test="travel != null">
+        TRAVEL = #{travel,jdbcType=INTEGER},
+      </if>
+      <if test="gxbIllness != null">
+        GXB_ILLNESS = #{gxbIllness,jdbcType=INTEGER},
+      </if>
+      <if test="gxyIllness != null">
+        GXY_ILLNESS = #{gxyIllness,jdbcType=INTEGER},
+      </if>
+      <if test="tnbIllness != null">
+        TNB_ILLNESS = #{tnbIllness,jdbcType=INTEGER},
+      </if>
+      <if test="lungIllness != null">
+        LUNG_ILLNESS = #{lungIllness,jdbcType=INTEGER},
+      </if>
+    </set>
+  </sql>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hmt.graduate.paper.pojo.SurgeryBfEstimate">
+    update surgery_bf_estimate
+    <include refid="SQL_ID_UPDATE_SET" />
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hmt.graduate.paper.pojo.SurgeryBfEstimate">
+    update surgery_bf_estimate
+    set PATIENT_ID = #{patientId,jdbcType=BIGINT},
+      AGE = #{age,jdbcType=INTEGER},
+      SEX = #{sex,jdbcType=CHAR},
+      EDU_YEAR = #{eduYear,jdbcType=INTEGER},
+      SURGERY_HIS = #{surgeryHis,jdbcType=INTEGER},
+      BRAIN_HIS = #{brainHis,jdbcType=INTEGER},
+      DEPARTMENT = #{department,jdbcType=INTEGER},
+      SURGERY_BF_ILLNESS = #{surgeryBfIllness,jdbcType=INTEGER},
+      HOME_WORK = #{homeWork,jdbcType=INTEGER},
+      PLAY_PK = #{playPk,jdbcType=INTEGER},
+      PLAY_CHESS = #{playChess,jdbcType=INTEGER},
+      READ_PAPER = #{readPaper,jdbcType=INTEGER},
+      MON_EXCETS = #{monExcets,jdbcType=INTEGER},
+      PLAY_KID = #{playKid,jdbcType=INTEGER},
+      TRAVEL = #{travel,jdbcType=INTEGER},
+      GXB_ILLNESS = #{gxbIllness,jdbcType=INTEGER},
+      GXY_ILLNESS = #{gxyIllness,jdbcType=INTEGER},
+      TNB_ILLNESS = #{tnbIllness,jdbcType=INTEGER},
+      LUNG_ILLNESS = #{lungIllness,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

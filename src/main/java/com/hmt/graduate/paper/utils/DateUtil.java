@@ -5,7 +5,10 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Random;
 
 /**
  * 
@@ -38,30 +41,18 @@ public class DateUtil implements AutoCloseable,Serializable{
 		}
 	};
 
-	/**
-	 * 
-	 * @描述：格式化String转换为Date
-	 * @创建人：wyait
-	 * @param dateStr
-	 * @return Date
-	 * @throws ParseException
-	 */
+	public static String getHispitalNo() {
+		return new SimpleDateFormat("yyMMddHHmmssSSS").format(new Date());
+	}
+
 	public static Date parse(String dateStr) throws ParseException {
 		return threadLocal.get().parse(dateStr);
 	}
 
-	/**
-	 * 
-	 * @描述：将date日期转换为string
-	 * @创建人：wyait
-	 * @param date
-	 * @return 格式：yyyy-MM-dd HH:mm:ss
-	 */
 	public static String format(Date date) {
 		return threadLocal.get().format(date);
 	}
 
-	public void close() throws Exception {
-	}
+	public void close() throws Exception {}
 
 }
