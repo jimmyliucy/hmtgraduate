@@ -42,11 +42,16 @@ $(function() {
         //监听工具条
         table.on('tool(patientTable)', function(obj){
             var data = obj.data;
+<<<<<<< HEAD
             if(obj.event === 'beforeEvalaute'){
                // beforeEvalaute(data.id, data.name);
             } else if(obj.event === 'detailPatient'){
                 //新增cam测试
                // detailPatient(data.id,data.name);
+=======
+            if(obj.event === 'surgeryedCAM'){
+                surgeryedCAM(data.id, data.name);
+>>>>>>> 778539cb5552fe79a32abd6b761a7bd62c004977
             }
         });
         //监听提交
@@ -77,6 +82,48 @@ $(function() {
     });
 });
 
+<<<<<<< HEAD
+=======
+function surgeryedCAM(patientId, name) {
+    if (isBlank(patientId)) {
+        layer.alert("未获取到患者id");
+    }
+    $("#camPatientId").val(patientId);
+    layer.open({
+        type:1,
+        title: name + "--谵妄测试",
+        fixed:false,
+        resize :false,
+        shadeClose: true,
+        area: ['600px', '680px'],
+        content:$('#setCAM'),
+        end:function(){
+            cleanSearch();
+        }
+    });
+}
+
+function cleanSearch(){
+//    $("#name").val("");
+//    $("#hispitalNo").val("");
+    $("#patientId").val("");
+    $("#id").val("");
+    $("#pageNum").val("");
+    $("select[name='status']").get(0).selectedIndex;
+    $("select[name='acute']").get(0).selectedIndex;
+    $("select[name='attention']").get(0).selectedIndex;
+    $("select[name='thinking']").get(0).selectedIndex;
+    $("select[name='sence']").get(0).selectedIndex;
+    $("select[name='directional']").get(0).selectedIndex;
+    $("select[name='memoryLoss']").get(0).selectedIndex;
+    $("select[name='perceptionDisorders']").get(0).selectedIndex;
+    $("select[name='psychoSportExcitement']").get(0).selectedIndex;
+    $("select[name='mentalSportSlow']").get(0).selectedIndex;
+    $("select[name='wave']").get(0).selectedIndex;
+    $("select[name='sleepWakeCycle']").get(0).selectedIndex;
+}
+
+>>>>>>> 778539cb5552fe79a32abd6b761a7bd62c004977
 function load(obj){
     //重新加载table
     console.log("====="+obj.field);

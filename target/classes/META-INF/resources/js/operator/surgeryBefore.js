@@ -13,6 +13,11 @@ $(function() {
 });
 
     function mmseSubmit() {
+        var patient = $("patientId").val();
+        if (isBlank(patient)) {
+            layer.alert("请返回上一页提交患者信息后再进行本次操作");
+        }
+        $("mmsePatientId").val(patient);
         $.ajax({
             type: "POST",
             data: $("#mmseScoreForm").serialize(),
@@ -55,6 +60,11 @@ $(function() {
     }
 
     function camSubmit() {
+        var patient = $("patientId").val();
+        if (isBlank(patient)) {
+            layer.alert("请返回上一页提交患者信息后再进行本次操作");
+        }
+        $("camPatientId").val(patient);
         $.ajax({
             type: "POST",
             data: $("#camForm").serialize(),
@@ -72,4 +82,48 @@ $(function() {
                 layer.alert("操作请求错误，请您稍后再试");
             }
         });
+<<<<<<< HEAD
     }
+=======
+    }
+
+    /****************************************************
+     * last Keyword in function signature is mean
+     * 表示上一页；
+     * next Keyword in function signature is mean
+     * 表示下一页；
+     * 显示隐藏DIV域的方法：
+     *   1、$("#demo").attr("style","display:none;");//隐藏div
+     *      $("#demo").attr("style","display:block;");//显示div
+     *   2、$("#demo").css("display","none");//隐藏div
+     *      $("#demo").css("display","block");//显示div
+     *   3、$("#demo").hide();//隐藏div
+     *      $("#demo").show();//显示div
+     *   4、$("#demo").toggle(//动态显示和隐藏
+     *          function () {
+     *              $(this).attr("style","display:none;");//隐藏div
+     *          },
+     *          function () {
+     *              $(this).attr("style","display:block;");//显示div
+     *          });
+     * **************************************************/
+    function patientNextPage() {
+        $("#addPatient").css("display","none");//隐藏div
+        $("#setMMSE").css("display","block");//显示div
+    }
+
+    function mmseLastPage() {
+        $("#setMMSE").css("display","none");//
+        $("#addPatient").css("display","block");//
+    }
+
+    function mmseNextPage() {
+        $("#setMMSE").css("display","none");//
+        $("#addCam").css("display","block");//
+    }
+
+    function camLastPage() {
+        $("#addCam").css("display","none");//
+        $("#setMMSE").css("display","block");//
+    }
+

@@ -9,8 +9,9 @@
         <ul class="layui-tab-title">
             <li id="patients" class="layui-this">患者列表</li>
             <li id="surgeryBefore">手术前</li>
-            <li id="surgerying">手术中</li>
-            <li id="surgeryAfter">手术后</li>//style="display:none;"
+            <!--<li id="surgerying">手术中</li>
+            <li id="surgeryAfter">手术后</li>//style="display:none;"-->
+
         </ul>
         <div class="layui-tab-content" style="height: 100px;">
             <div id="patientsDiv" class="layui-tab-item layui-show">
@@ -19,12 +20,12 @@
             <div id="surgeryBeforeDiv" class="layui-tab-item">
                 <div th:include="operator/surgeryBefore :: surgeryBefore"></div>
             </div>
-            <div id="surgeryingDiv" class="layui-tab-item">
-                33<!--<div th:include="auth/role :: role"></div>-->
+            <!--<div id="surgeryingDiv" class="layui-tab-item">
+                33&lt;!&ndash;<div th:include="auth/role :: role"></div>&ndash;&gt;
             </div>
             <div  id="surgeryAfterDiv" class="layui-tab-item">
-                44<!--<div th:include="auth/roleUpdate :: updateRole"></div>-->
-            </div>
+                44&lt;!&ndash;<div th:include="auth/roleUpdate :: updateRole"></div>&ndash;&gt;
+            </div>-->
         </div>
     </div>
 </div>

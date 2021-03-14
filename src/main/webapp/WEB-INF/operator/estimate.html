@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="/js/ztree/css/zTreeStyle/zTreeStyle.css"></link>
+<head th:include="layout :: htmlhead" th:with="title='手术评估'"></head>
+<body>
+
+<div  class="layui-container" style="width: 100%">
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+        <ul class="layui-tab-title">
+            <li id="estimateBf">术前评估</li>
+            <li id="estimating">术中评测</li>
+        </ul>
+        <div class="layui-tab-content" style="height: 100px;">
+            <div id="estimateBfDiv" class="layui-tab-item layui-show">
+                <div th:include="operator/estimateBf :: estimateBf"></div>
+            </div>
+            <div id="estimatingDiv" class="layui-tab-item">
+                <div th:include="operator/estimating :: estimating"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/operator/estimate.js"></script>
+<script th:inline="javascript">
+    var flag=/*[[${flag==null ?'':flag}]]*/;
+</script>
+</body>
+</html>

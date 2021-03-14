@@ -5,11 +5,12 @@
 <script type="text/javascript" src="/js/dateUtils.js"></script>
 <body>
 <div th:fragment="surgeryBefore">
-    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-        <legend>患者信息登记</legend>
-    </fieldset>
-    <input id="patientId" type="hidden" name="patientId"/>
+
     <div id="addPatient" class="layer_self_wrap" >
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>患者信息登记</legend>
+        </fieldset>
+        <input name="patientId" id="patientId" type="hidden"/>
         <form id="patientForm" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
             <div class="layui-form-item">
                 <label class="layui-form-label">姓名</label>
@@ -103,16 +104,18 @@
                 <div class="layui-input-block" style="margin-left: 10px;">
                     <button class="layui-btn" onclick="patientSubmit()" type="button">提交</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    <button type="button" class="layui-btn" onclick="patientNextPage()">下一页</button>
                 </div>
             </div>
         </form>
     </div>
 
-    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-        <legend>MMSE测试</legend>
-    </fieldset>
-    <div id="setMMSE" class="layer_self_wrap" style="width:580px;">
+    <div id="setMMSE" class="layer_self_wrap" style="width:580px;display:none;">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>MMSE测试</legend>
+        </fieldset>
         <form id="mmseScoreForm" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
+            <input name="mmsePatientId" id="mmsePatientId" type="hidden"/>
             <div class="layui-form-item">
                 <label class="layui-form-label">是否配合</label>
                 <div class="layui-input-block">
@@ -288,8 +291,11 @@
             </div>
             <div class="layui-form-item">
                 <div style="margin-left:10px;">
+                    <button type="button" class="layui-btn" onclick="mmseLastPage()">上一页</button>
                     <button class="layui-btn" type="button" onclick="mmseSubmit()">提交</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    <button type="button" class="layui-btn" onclick="mmseNextPage()">下一页</button>
+
                 </div>
             </div>
         </form>
@@ -300,8 +306,13 @@
     </fieldset>
 
     <div id="addCam" class="layer_self_wrap" >
-        <div id="setCAM" class="layer_self_wrap" style="width:580px">
+        <div id="setCAM" class="layer_self_wrap" style="width:580px;display:none;">
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                <legend>CAM测试</legend>
+            </fieldset>
+
             <form id="camForm" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
+                <input name="camPatientId" id="camPatientId" type="hidden"/>
                 <div class="layui-form-item">
                     <label class="layui-form-label">手术状态</label>
                     <div class="layui-input-block">
@@ -447,7 +458,8 @@
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-input-block" style="margin-left: 10px;">
-                        <button class="layui-btn" type="button" onclick="camSubmit()">提交</button>
+                        <button type="button" class="layui-btn" onclick="camLastPage()">上一页</button>
+                        <button class="layui-btn" type="button" onclick="camSubmit()">新增</button>
                         <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                     </div>
                 </div>

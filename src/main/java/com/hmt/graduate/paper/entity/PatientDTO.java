@@ -7,6 +7,8 @@ public class PatientDTO implements Serializable {
 
     private String id;
 
+    private String idCard;
+
     private String name;
 
     private Integer age;
@@ -45,6 +47,14 @@ public class PatientDTO implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
     }
 
     public String getName() {
