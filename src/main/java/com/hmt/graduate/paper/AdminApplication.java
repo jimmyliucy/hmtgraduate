@@ -1,5 +1,6 @@
 package com.hmt.graduate.paper;
 
+import com.hmt.graduate.paper.aop.ClearAnnotationBeanNameGenerator;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,7 +9,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerA
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.hmt.graduate.paper"})
+@ComponentScan(basePackages = {"com.hmt.graduate.paper"}, nameGenerator = ClearAnnotationBeanNameGenerator.class)
 public class AdminApplication {
 
 	private static String[] args;
