@@ -42,16 +42,8 @@ $(function() {
         //监听工具条
         table.on('tool(patientTable)', function(obj){
             var data = obj.data;
-<<<<<<< HEAD
-            if(obj.event === 'beforeEvalaute'){
-               // beforeEvalaute(data.id, data.name);
-            } else if(obj.event === 'detailPatient'){
-                //新增cam测试
-               // detailPatient(data.id,data.name);
-=======
             if(obj.event === 'surgeryedCAM'){
                 surgeryedCAM(data.id, data.name);
->>>>>>> 778539cb5552fe79a32abd6b761a7bd62c004977
             }
         });
         //监听提交
@@ -82,8 +74,6 @@ $(function() {
     });
 });
 
-<<<<<<< HEAD
-=======
 function surgeryedCAM(patientId, name) {
     if (isBlank(patientId)) {
         layer.alert("未获取到患者id");
@@ -123,7 +113,6 @@ function cleanSearch(){
     $("select[name='sleepWakeCycle']").get(0).selectedIndex;
 }
 
->>>>>>> 778539cb5552fe79a32abd6b761a7bd62c004977
 function load(obj){
     //重新加载table
     console.log("====="+obj.field);
