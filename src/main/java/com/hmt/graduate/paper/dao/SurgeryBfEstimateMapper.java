@@ -1,7 +1,7 @@
 package com.hmt.graduate.paper.dao;
 
 import com.hmt.graduate.paper.pojo.SurgeryBfEstimate;
-import com.lycheepay.clearing.annotation.NotNamedMapper;
+import com.hmt.graduate.paper.annotation.NotNamedMapper;
 
 @NotNamedMapper
 public interface SurgeryBfEstimateMapper {
