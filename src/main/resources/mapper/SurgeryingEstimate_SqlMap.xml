@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmt.graduate.paper.dao.SurgeryingEstimateMapperExt">
+  <resultMap id="BaseResultMap" type="com.hmt.graduate.paper.pojo.SurgeryingEstimate">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="PARENT_ID" jdbcType="BIGINT" property="parentId" />
+    <result column="MZ_TIME" jdbcType="BIGINT" property="mzTime" />
+    <result column="WSQ_BLOOD" jdbcType="INTEGER" property="wsqBlood" />
+    <result column="LOWER_BLOOD" jdbcType="INTEGER" property="lowerBlood" />
+    <result column="MA_WAY" jdbcType="VARCHAR" property="maWay" />
+    <result column="SURGERY_NAME" jdbcType="VARCHAR" property="surgeryName" />
+    <result column="SURGERY_DATE" jdbcType="TIMESTAMP" property="surgeryDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PARENT_ID, MZ_TIME, WSQ_BLOOD, LOWER_BLOOD, MA_WAY, SURGERY_NAME, SURGERY_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from surgerying_estimate
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from surgerying_estimate
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hmt.graduate.paper.pojo.SurgeryingEstimate">
+    insert into surgerying_estimate (ID, PARENT_ID, MZ_TIME, 
+      WSQ_BLOOD, LOWER_BLOOD, MA_WAY, 
+      SURGERY_NAME, SURGERY_DATE)
+    values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{mzTime,jdbcType=BIGINT}, 
+      #{wsqBlood,jdbcType=INTEGER}, #{lowerBlood,jdbcType=INTEGER}, #{maWay,jdbcType=VARCHAR}, 
+      #{surgeryName,jdbcType=VARCHAR}, #{surgeryDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hmt.graduate.paper.pojo.SurgeryingEstimate">
+    insert into surgerying_estimate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="parentId != null">
+        PARENT_ID,
+      </if>
+      <if test="mzTime != null">
+        MZ_TIME,
+      </if>
+      <if test="wsqBlood != null">
+        WSQ_BLOOD,
+      </if>
+      <if test="lowerBlood != null">
+        LOWER_BLOOD,
+      </if>
+      <if test="maWay != null">
+        MA_WAY,
+      </if>
+      <if test="surgeryName != null">
+        SURGERY_NAME,
+      </if>
+      <if test="surgeryDate != null">
+        SURGERY_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="mzTime != null">
+        #{mzTime,jdbcType=BIGINT},
+      </if>
+      <if test="wsqBlood != null">
+        #{wsqBlood,jdbcType=INTEGER},
+      </if>
+      <if test="lowerBlood != null">
+        #{lowerBlood,jdbcType=INTEGER},
+      </if>
+      <if test="maWay != null">
+        #{maWay,jdbcType=VARCHAR},
+      </if>
+      <if test="surgeryName != null">
+        #{surgeryName,jdbcType=VARCHAR},
+      </if>
+      <if test="surgeryDate != null">
+        #{surgeryDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <sql id="SQL_ID_UPDATE_SET">
+    <set>
+      <if test="id != null">
+        ID = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null">
+        PARENT_ID = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="mzTime != null">
+        MZ_TIME = #{mzTime,jdbcType=BIGINT},
+      </if>
+      <if test="wsqBlood != null">
+        WSQ_BLOOD = #{wsqBlood,jdbcType=INTEGER},
+      </if>
+      <if test="lowerBlood != null">
+        LOWER_BLOOD = #{lowerBlood,jdbcType=INTEGER},
+      </if>
+      <if test="maWay != null">
+        MA_WAY = #{maWay,jdbcType=VARCHAR},
+      </if>
+      <if test="surgeryName != null">
+        SURGERY_NAME = #{surgeryName,jdbcType=VARCHAR},
+      </if>
+      <if test="surgeryDate != null">
+        SURGERY_DATE = #{surgeryDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+  </sql>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hmt.graduate.paper.pojo.SurgeryingEstimate">
+    update surgerying_estimate
+    <include refid="SQL_ID_UPDATE_SET" />
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hmt.graduate.paper.pojo.SurgeryingEstimate">
+    update surgerying_estimate
+    set PARENT_ID = #{parentId,jdbcType=BIGINT},
+      MZ_TIME = #{mzTime,jdbcType=BIGINT},
+      WSQ_BLOOD = #{wsqBlood,jdbcType=INTEGER},
+      LOWER_BLOOD = #{lowerBlood,jdbcType=INTEGER},
+      MA_WAY = #{maWay,jdbcType=VARCHAR},
+      SURGERY_NAME = #{surgeryName,jdbcType=VARCHAR},
+      SURGERY_DATE = #{surgeryDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
