@@ -3,6 +3,7 @@
 <mapper namespace="com.hmt.graduate.paper.dao.SurgeryingEstimateMapperExt">
   <resultMap id="BaseResultMap" type="com.hmt.graduate.paper.pojo.SurgeryingEstimate">
     <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="PARENT_ID" jdbcType="BIGINT" property="parentId" />
     <result column="MZ_TIME" jdbcType="BIGINT" property="mzTime" />
     <result column="WSQ_BLOOD" jdbcType="INTEGER" property="wsqBlood" />
     <result column="LOWER_BLOOD" jdbcType="INTEGER" property="lowerBlood" />
@@ -11,7 +12,7 @@
     <result column="SURGERY_DATE" jdbcType="TIMESTAMP" property="surgeryDate" />
   </resultMap>
   <sql id="Base_Column_List">
-    ID, MZ_TIME, WSQ_BLOOD, LOWER_BLOOD, MA_WAY, SURGERY_NAME, SURGERY_DATE
+    ID, PARENT_ID, MZ_TIME, WSQ_BLOOD, LOWER_BLOOD, MA_WAY, SURGERY_NAME, SURGERY_DATE
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -24,18 +25,21 @@
     where ID = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.hmt.graduate.paper.pojo.SurgeryingEstimate">
-    insert into surgerying_estimate (ID, MZ_TIME, WSQ_BLOOD, 
-      LOWER_BLOOD, MA_WAY, SURGERY_NAME, 
-      SURGERY_DATE)
-    values (#{id,jdbcType=BIGINT}, #{mzTime,jdbcType=BIGINT}, #{wsqBlood,jdbcType=INTEGER}, 
-      #{lowerBlood,jdbcType=INTEGER}, #{maWay,jdbcType=VARCHAR}, #{surgeryName,jdbcType=VARCHAR}, 
-      #{surgeryDate,jdbcType=TIMESTAMP})
+    insert into surgerying_estimate (ID, PARENT_ID, MZ_TIME, 
+      WSQ_BLOOD, LOWER_BLOOD, MA_WAY, 
+      SURGERY_NAME, SURGERY_DATE)
+    values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{mzTime,jdbcType=BIGINT}, 
+      #{wsqBlood,jdbcType=INTEGER}, #{lowerBlood,jdbcType=INTEGER}, #{maWay,jdbcType=VARCHAR}, 
+      #{surgeryName,jdbcType=VARCHAR}, #{surgeryDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.hmt.graduate.paper.pojo.SurgeryingEstimate">
     insert into surgerying_estimate
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         ID,
+      </if>
+      <if test="parentId != null">
+        PARENT_ID,
       </if>
       <if test="mzTime != null">
         MZ_TIME,
@@ -59,6 +63,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=BIGINT},
       </if>
       <if test="mzTime != null">
         #{mzTime,jdbcType=BIGINT},
@@ -84,6 +91,9 @@
     <set>
       <if test="id != null">
         ID = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null">
+        PARENT_ID = #{parentId,jdbcType=BIGINT},
       </if>
       <if test="mzTime != null">
         MZ_TIME = #{mzTime,jdbcType=BIGINT},
@@ -112,7 +122,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.hmt.graduate.paper.pojo.SurgeryingEstimate">
     update surgerying_estimate
-    set MZ_TIME = #{mzTime,jdbcType=BIGINT},
+    set PARENT_ID = #{parentId,jdbcType=BIGINT},
+      MZ_TIME = #{mzTime,jdbcType=BIGINT},
       WSQ_BLOOD = #{wsqBlood,jdbcType=INTEGER},
       LOWER_BLOOD = #{lowerBlood,jdbcType=INTEGER},
       MA_WAY = #{maWay,jdbcType=VARCHAR},

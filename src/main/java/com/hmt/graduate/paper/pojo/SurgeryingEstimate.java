@@ -5,13 +5,18 @@ import java.util.Date;
 
 /**
  * @author HuangMengTian
- * @date 2021-03-15 15:58:54
+ * @date 2021-03-15 16:16:38
  */
 public class SurgeryingEstimate implements Serializable {
     /**
      * 主键
      */
     private Long id;
+
+    /**
+     * 患者ID
+     */
+    private Long parentId;
 
     /**
      * 麻醉时间(小时)
@@ -46,7 +51,7 @@ public class SurgeryingEstimate implements Serializable {
     /**
      * 序列化
      */
-    private static final long serialVersionUID = 7223869378624766112L;
+    private static final long serialVersionUID = -625805163017321361L;
 
     public Long getId() {
         return id;
@@ -54,6 +59,14 @@ public class SurgeryingEstimate implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 
     public Long getMzTime() {
@@ -111,6 +124,7 @@ public class SurgeryingEstimate implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", parentId=").append(parentId);
         sb.append(", mzTime=").append(mzTime);
         sb.append(", wsqBlood=").append(wsqBlood);
         sb.append(", lowerBlood=").append(lowerBlood);
@@ -134,6 +148,7 @@ public class SurgeryingEstimate implements Serializable {
         }
         SurgeryingEstimate other = (SurgeryingEstimate) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+            && (this.getParentId() == null ? other.getParentId() == null : this.getParentId().equals(other.getParentId()))
             && (this.getMzTime() == null ? other.getMzTime() == null : this.getMzTime().equals(other.getMzTime()))
             && (this.getWsqBlood() == null ? other.getWsqBlood() == null : this.getWsqBlood().equals(other.getWsqBlood()))
             && (this.getLowerBlood() == null ? other.getLowerBlood() == null : this.getLowerBlood().equals(other.getLowerBlood()))
@@ -147,6 +162,7 @@ public class SurgeryingEstimate implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getParentId() == null) ? 0 : getParentId().hashCode());
         result = prime * result + ((getMzTime() == null) ? 0 : getMzTime().hashCode());
         result = prime * result + ((getWsqBlood() == null) ? 0 : getWsqBlood().hashCode());
         result = prime * result + ((getLowerBlood() == null) ? 0 : getLowerBlood().hashCode());
