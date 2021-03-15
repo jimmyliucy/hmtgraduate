@@ -1,5 +1,6 @@
 package com.hmt.graduate.paper.dao;
 
+import com.hmt.graduate.paper.annotation.NamedMapper;
 import com.hmt.graduate.paper.pojo.Cam;
 import org.apache.ibatis.annotations.Mapper;
 

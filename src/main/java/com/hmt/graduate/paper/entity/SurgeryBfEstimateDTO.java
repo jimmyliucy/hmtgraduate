@@ -323,7 +323,7 @@ public class SurgeryBfEstimateDTO implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        DTO other = (DTO) that;
+        SurgeryBfEstimateDTO other = (SurgeryBfEstimateDTO) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getPatientId() == null ? other.getPatientId() == null : this.getPatientId().equals(other.getPatientId()))
             && (this.getAge() == null ? other.getAge() == null : this.getAge().equals(other.getAge()))

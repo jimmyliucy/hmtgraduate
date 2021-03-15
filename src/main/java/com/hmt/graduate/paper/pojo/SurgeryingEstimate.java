@@ -7,7 +7,7 @@ import java.util.Date;
  * @author HuangMengTian
  * @date 2021-03-15 16:16:38
  */
-public class SurgeryingEstimate implements Serializable {
+public class SurgeryingEstimate {
     /**
      * 主键
      */

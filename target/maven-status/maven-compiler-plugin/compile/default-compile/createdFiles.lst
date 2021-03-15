@@ -1,6 +1,7 @@
 com\hmt\graduate\paper\interceptor\UserActionInterceptor.class
 com\hmt\graduate\paper\dao\CamMapper.class
 com\hmt\graduate\paper\pojo\MmseScore.class
+com\hmt\graduate\paper\dao\SurgeryBfEstimateMapperExt.class
 com\hmt\graduate\paper\dao\RoleMapper.class
 com\hmt\graduate\paper\config\ShiroConfig.class
 com\hmt\graduate\paper\dao\UserMapper.class
@@ -10,6 +11,7 @@ com\hmt\graduate\paper\constant\EnumStatus.class
 com\hmt\graduate\paper\entity\RoleVO.class
 com\hmt\graduate\paper\service\UserServiceImpl.class
 com\hmt\graduate\paper\dao\MmseQuestionsMapper.class
+com\hmt\graduate\paper\entity\CamDTO.class
 com\hmt\graduate\paper\AdminApplication.class
 com\hmt\graduate\paper\dao\RolePermissionMapper.class
 com\hmt\graduate\paper\constant\EnumStatus$DegreeEnum.class
@@ -17,8 +19,10 @@ com\hmt\graduate\paper\dao\MmseScoreMapper.class
 com\hmt\graduate\paper\service\patients\PatientService.class
 com\hmt\graduate\paper\shiro\RetryLimitHashedCredentialsMatcher.class
 com\hmt\graduate\paper\entity\UserRolesVO.class
+com\hmt\graduate\paper\entity\SurgeryingEstimateDTO.class
 com\hmt\graduate\paper\controller\patients\RecogniteTestController.class
 com\hmt\graduate\paper\entity\UserDTO.class
+com\hmt\graduate\paper\dao\SurgeryingEstimateMapper.class
 com\hmt\graduate\paper\controller\IndexController.class
 com\hmt\graduate\paper\service\AuthServiceImpl.class
 com\hmt\graduate\paper\pojo\RolePermissionKey.class
@@ -26,16 +30,22 @@ com\hmt\graduate\paper\utils\Constant.class
 com\hmt\graduate\paper\controller\user\AuthController.class
 com\hmt\graduate\paper\utils\SyncUserAuthUtil.class
 com\hmt\graduate\paper\pojo\User.class
+com\hmt\graduate\paper\annotation\NamedMapper.class
+com\hmt\graduate\paper\pojo\SurgeryBfEstimate.class
 com\hmt\graduate\paper\utils\DateUtil.class
+com\hmt\graduate\paper\entity\MmseDTO.class
 com\hmt\graduate\paper\ServletInitializer.class
+com\hmt\graduate\paper\entity\SurgeryBfEstimateDTO.class
 com\hmt\graduate\paper\service\patients\MmseScoreService.class
 com\hmt\graduate\paper\config\SpringWebMvcConfig.class
 com\hmt\graduate\paper\dao\UserRoleMapper.class
 com\hmt\graduate\paper\utils\SendMsgServer.class
 com\hmt\graduate\paper\config\DruidConfiguration.class
 com\hmt\graduate\paper\pojo\MmseQuestions.class
+com\hmt\graduate\paper\pojo\SurgeryingEstimate.class
 com\hmt\graduate\paper\utils\ShiroFilterUtils.class
 com\hmt\graduate\paper\exception\BizException.class
+com\hmt\graduate\paper\annotation\NotNamedMapper.class
 com\hmt\graduate\paper\service\patients\PatientServiceImpl.class
 com\hmt\graduate\paper\shiro\ShiroRealm.class
 com\hmt\graduate\paper\pojo\Role.class
@@ -44,6 +54,7 @@ com\hmt\graduate\paper\utils\ParamProperties.class
 com\hmt\graduate\paper\service\UserService.class
 com\hmt\graduate\paper\entity\UserRoleDTO.class
 com\hmt\graduate\paper\pojo\Patient.class
+com\hmt\graduate\paper\dao\SurgeryingEstimateMapperExt.class
 com\hmt\graduate\paper\entity\PermissionVO.class
 com\hmt\graduate\paper\service\AuthService.class
 com\hmt\graduate\paper\reflection\ReflectBeanToSum.class
@@ -62,6 +73,7 @@ com\hmt\graduate\paper\controller\BaseController.class
 com\hmt\graduate\paper\service\patients\MmseQuestionService.class
 com\hmt\graduate\paper\constant\IStatusMessage$SystemStatus.class
 com\hmt\graduate\paper\utils\ValidateUtil.class
+com\hmt\graduate\paper\dao\SurgeryBfEstimateMapper.class
 com\hmt\graduate\paper\controller\error\GlobalErrorController.class
 com\hmt\graduate\paper\constant\EnumStatus$SurgeryEnum.class
 com\hmt\graduate\paper\service\patients\CamService.class
@@ -77,4 +89,5 @@ com\hmt\graduate\paper\utils\PageDataResult.class
 com\hmt\graduate\paper\controller\operator\RecordController.class
 com\hmt\graduate\paper\controller\patients\PatientsController.class
 com\hmt\graduate\paper\aop\AppLogAspect.class
+com\hmt\graduate\paper\aop\AnnotationBeanNameGeneratorImpl.class
 com\hmt\graduate\paper\constant\IStatusMessage.class

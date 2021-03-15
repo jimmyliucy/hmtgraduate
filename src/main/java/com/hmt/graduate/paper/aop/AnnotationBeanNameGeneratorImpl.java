@@ -10,10 +10,10 @@ import org.springframework.context.annotation.AnnotationBeanNameGenerator;
 
 import com.hmt.graduate.paper.annotation.NamedMapper;
 
-public class ClearAnnotationBeanNameGenerator  extends AnnotationBeanNameGenerator {
+public class AnnotationBeanNameGeneratorImpl extends AnnotationBeanNameGenerator {
 
 	
-	protected final static Logger log = LoggerFactory.getLogger(ClearAnnotationBeanNameGenerator.class);
+	protected final static Logger log = LoggerFactory.getLogger(AnnotationBeanNameGeneratorImpl.class);
 	
 	@Override
 	public String generateBeanName(BeanDefinition definition,
@@ -25,7 +25,7 @@ public class ClearAnnotationBeanNameGenerator  extends AnnotationBeanNameGenerat
 		        	if(StringUtils.isEmpty(beanName)){
 		        		beanName =  super.generateBeanName(definition, registry);
 		        	}
-		        	log.info("ClearAnnotationBeanNameGenerator-->>beanName:"+beanName+"---clazz-->>:"+ clazz.toString());
+		        	log.info("AnnotationBeanNameGeneratorImpl-->>beanName:"+beanName+"---clazz-->>:"+ clazz.toString());
 		        	return beanName;
 		        }else {
 		        	return super.generateBeanName(definition, registry);

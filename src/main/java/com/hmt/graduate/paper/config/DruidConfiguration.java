@@ -55,7 +55,7 @@ public class DruidConfiguration {
 	 * @return
 	 */
 //	@Bean
-//	public MapperScannerConfigurer mapperScannerConfigurer(@Value("${com.hmt.graduate.paper.dao}") String basePackage) {
+//	public MapperScannerConfigurer mapperScannerConfigurer(@Value("${com.hmt.graduate.paper}") String basePackage) {
 //		MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
 //		mapperScannerConfigurer.setBasePackage(basePackage);
 //		mapperScannerConfigurer.setNameGenerator();

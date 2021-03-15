@@ -32,8 +32,10 @@ public class ShiroConfig {
 
 	@Autowired
 	private PermissionMapper permissionMapper;
+
 	@Autowired
 	private ParamProperties paramProperties;
+
 	@Autowired
 	private ShiroRealm shiroRealm;
 

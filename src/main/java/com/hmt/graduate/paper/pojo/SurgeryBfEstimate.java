@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @author HuangMengTian
  * @date 2021-03-12 17:02:24
  */
-public class SurgeryBfEstimate implements Serializable {
+public class SurgeryBfEstimate {
     /**
      * 主键id
      */

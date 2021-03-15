@@ -1,5 +1,6 @@
 package com.hmt.graduate.paper.dao;
 
+import com.hmt.graduate.paper.annotation.NamedMapper;
 import com.hmt.graduate.paper.entity.PermissionVO;
 import com.hmt.graduate.paper.pojo.Permission;
 import org.apache.ibatis.annotations.Mapper;
@@ -8,6 +9,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import java.util.List;
 
 @Mapper
+@NamedMapper(value ="com.hmt.graduate.paper.dao.PermissionMapper")
 public interface PermissionMapper {
     int deleteByPrimaryKey(Integer id);
 
