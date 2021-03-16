@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmt.graduate.paper.dao.PatientMapperExt">
+  <resultMap id="BaseResultMap" type="com.hmt.graduate.paper.pojo.Patient">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="pat_nation" jdbcType="VARCHAR" property="patNation" />
+    <result column="pat_job" jdbcType="VARCHAR" property="patJob" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="adress" jdbcType="VARCHAR" property="adress" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="allergy" jdbcType="VARCHAR" property="allergy" />
+    <result column="family_disease" jdbcType="VARCHAR" property="familyDisease" />
+    <result column="symptom" jdbcType="VARCHAR" property="symptom" />
+    <result column="illness_time" jdbcType="DATE" property="illnessTime" />
+    <result column="degree" jdbcType="CHAR" property="degree" />
+    <result column="phone_no" jdbcType="VARCHAR" property="phoneNo" />
+    <result column="hispital_no" jdbcType="VARCHAR" property="hispitalNo" />
+    <result column="primary_diagnosis" jdbcType="VARCHAR" property="primaryDiagnosis" />
+    <result column="history_disease" jdbcType="VARCHAR" property="historyDisease" />
+    <result column="history_anesthesia" jdbcType="VARCHAR" property="historyAnesthesia" />
+    <result column="marriage" jdbcType="CHAR" property="marriage" />
+    <result column="remark1" jdbcType="VARCHAR" property="remark1" />
+    <result column="remark2" jdbcType="VARCHAR" property="remark2" />
+    <result column="remark3" jdbcType="VARCHAR" property="remark3" />
+    <result column="remark4" jdbcType="VARCHAR" property="remark4" />
+    <result column="remark5" jdbcType="VARCHAR" property="remark5" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, id_card, email, pat_nation, pat_job, age, sex, adress, create_date, allergy, 
+    family_disease, symptom, illness_time, degree, phone_no, hispital_no, primary_diagnosis, 
+    history_disease, history_anesthesia, marriage, remark1, remark2, remark3, remark4, 
+    remark5
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from patients
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from patients
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hmt.graduate.paper.pojo.Patient">
+    insert into patients (id, name, id_card, 
+      email, pat_nation, pat_job, 
+      age, sex, adress, create_date, 
+      allergy, family_disease, symptom, 
+      illness_time, degree, phone_no, 
+      hispital_no, primary_diagnosis, history_disease, 
+      history_anesthesia, marriage, remark1, 
+      remark2, remark3, remark4, 
+      remark5)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{patNation,jdbcType=VARCHAR}, #{patJob,jdbcType=VARCHAR}, 
+      #{age,jdbcType=INTEGER}, #{sex,jdbcType=INTEGER}, #{adress,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{allergy,jdbcType=VARCHAR}, #{familyDisease,jdbcType=VARCHAR}, #{symptom,jdbcType=VARCHAR}, 
+      #{illnessTime,jdbcType=DATE}, #{degree,jdbcType=CHAR}, #{phoneNo,jdbcType=VARCHAR}, 
+      #{hispitalNo,jdbcType=VARCHAR}, #{primaryDiagnosis,jdbcType=VARCHAR}, #{historyDisease,jdbcType=VARCHAR}, 
+      #{historyAnesthesia,jdbcType=VARCHAR}, #{marriage,jdbcType=CHAR}, #{remark1,jdbcType=VARCHAR}, 
+      #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, #{remark4,jdbcType=VARCHAR}, 
+      #{remark5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hmt.graduate.paper.pojo.Patient">
+    insert into patients
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="idCard != null">
+        id_card,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="patNation != null">
+        pat_nation,
+      </if>
+      <if test="patJob != null">
+        pat_job,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="adress != null">
+        adress,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="allergy != null">
+        allergy,
+      </if>
+      <if test="familyDisease != null">
+        family_disease,
+      </if>
+      <if test="symptom != null">
+        symptom,
+      </if>
+      <if test="illnessTime != null">
+        illness_time,
+      </if>
+      <if test="degree != null">
+        degree,
+      </if>
+      <if test="phoneNo != null">
+        phone_no,
+      </if>
+      <if test="hispitalNo != null">
+        hispital_no,
+      </if>
+      <if test="primaryDiagnosis != null">
+        primary_diagnosis,
+      </if>
+      <if test="historyDisease != null">
+        history_disease,
+      </if>
+      <if test="historyAnesthesia != null">
+        history_anesthesia,
+      </if>
+      <if test="marriage != null">
+        marriage,
+      </if>
+      <if test="remark1 != null">
+        remark1,
+      </if>
+      <if test="remark2 != null">
+        remark2,
+      </if>
+      <if test="remark3 != null">
+        remark3,
+      </if>
+      <if test="remark4 != null">
+        remark4,
+      </if>
+      <if test="remark5 != null">
+        remark5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="patNation != null">
+        #{patNation,jdbcType=VARCHAR},
+      </if>
+      <if test="patJob != null">
+        #{patJob,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="adress != null">
+        #{adress,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="allergy != null">
+        #{allergy,jdbcType=VARCHAR},
+      </if>
+      <if test="familyDisease != null">
+        #{familyDisease,jdbcType=VARCHAR},
+      </if>
+      <if test="symptom != null">
+        #{symptom,jdbcType=VARCHAR},
+      </if>
+      <if test="illnessTime != null">
+        #{illnessTime,jdbcType=DATE},
+      </if>
+      <if test="degree != null">
+        #{degree,jdbcType=CHAR},
+      </if>
+      <if test="phoneNo != null">
+        #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hispitalNo != null">
+        #{hispitalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryDiagnosis != null">
+        #{primaryDiagnosis,jdbcType=VARCHAR},
+      </if>
+      <if test="historyDisease != null">
+        #{historyDisease,jdbcType=VARCHAR},
+      </if>
+      <if test="historyAnesthesia != null">
+        #{historyAnesthesia,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null">
+        #{marriage,jdbcType=CHAR},
+      </if>
+      <if test="remark1 != null">
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null">
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null">
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null">
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null">
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <sql id="SQL_ID_UPDATE_SET">
+    <set>
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="patNation != null">
+        pat_nation = #{patNation,jdbcType=VARCHAR},
+      </if>
+      <if test="patJob != null">
+        pat_job = #{patJob,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="adress != null">
+        adress = #{adress,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="allergy != null">
+        allergy = #{allergy,jdbcType=VARCHAR},
+      </if>
+      <if test="familyDisease != null">
+        family_disease = #{familyDisease,jdbcType=VARCHAR},
+      </if>
+      <if test="symptom != null">
+        symptom = #{symptom,jdbcType=VARCHAR},
+      </if>
+      <if test="illnessTime != null">
+        illness_time = #{illnessTime,jdbcType=DATE},
+      </if>
+      <if test="degree != null">
+        degree = #{degree,jdbcType=CHAR},
+      </if>
+      <if test="phoneNo != null">
+        phone_no = #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hispitalNo != null">
+        hispital_no = #{hispitalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryDiagnosis != null">
+        primary_diagnosis = #{primaryDiagnosis,jdbcType=VARCHAR},
+      </if>
+      <if test="historyDisease != null">
+        history_disease = #{historyDisease,jdbcType=VARCHAR},
+      </if>
+      <if test="historyAnesthesia != null">
+        history_anesthesia = #{historyAnesthesia,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null">
+        marriage = #{marriage,jdbcType=CHAR},
+      </if>
+      <if test="remark1 != null">
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null">
+        remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null">
+        remark3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null">
+        remark4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null">
+        remark5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+    </set>
+  </sql>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hmt.graduate.paper.pojo.Patient">
+    update patients
+    <include refid="SQL_ID_UPDATE_SET" />
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hmt.graduate.paper.pojo.Patient">
+    update patients
+    set name = #{name,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      pat_nation = #{patNation,jdbcType=VARCHAR},
+      pat_job = #{patJob,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=INTEGER},
+      adress = #{adress,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      allergy = #{allergy,jdbcType=VARCHAR},
+      family_disease = #{familyDisease,jdbcType=VARCHAR},
+      symptom = #{symptom,jdbcType=VARCHAR},
+      illness_time = #{illnessTime,jdbcType=DATE},
+      degree = #{degree,jdbcType=CHAR},
+      phone_no = #{phoneNo,jdbcType=VARCHAR},
+      hispital_no = #{hispitalNo,jdbcType=VARCHAR},
+      primary_diagnosis = #{primaryDiagnosis,jdbcType=VARCHAR},
+      history_disease = #{historyDisease,jdbcType=VARCHAR},
+      history_anesthesia = #{historyAnesthesia,jdbcType=VARCHAR},
+      marriage = #{marriage,jdbcType=CHAR},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR},
+      remark3 = #{remark3,jdbcType=VARCHAR},
+      remark4 = #{remark4,jdbcType=VARCHAR},
+      remark5 = #{remark5,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
