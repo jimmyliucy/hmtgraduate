@@ -1,17 +1,22 @@
 package com.hmt.graduate.paper.dao;
 
-import com.hmt.graduate.paper.annotation.NamedMapper;
 import com.hmt.graduate.paper.pojo.Cam;
-import org.apache.ibatis.annotations.Mapper;
+import com.lycheepay.clearing.annotation.NotNamedMapper;
+import org.lychee.mybatis.annotation.ReturnRows;
 
-import java.util.List;
-
-@Mapper
+@NotNamedMapper
 public interface CamMapper {
+    int deleteByPrimaryKey(Integer id);
 
     int insert(Cam record);
 
     int insertSelective(Cam record);
 
-    List<Cam> selectCamByPatientId(Integer patientId);
+    Cam selectByPrimaryKey(Integer id);
+
+    @ReturnRows(value=1)
+    int updateByPrimaryKeySelective(Cam record);
+
+    @ReturnRows(value=1)
+    int updateByPrimaryKey(Cam record);
 }

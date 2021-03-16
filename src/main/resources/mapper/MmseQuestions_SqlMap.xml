@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmt.graduate.paper.dao.MmseQuestionsMapperExt">
+  <resultMap id="BaseResultMap" type="com.hmt.graduate.paper.pojo.MmseQuestions">
+    <id column="question_id" jdbcType="INTEGER" property="questionId" />
+    <result column="question_name" jdbcType="VARCHAR" property="questionName" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    question_id, question_name, score
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mmse_questions
+    where question_id = #{questionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mmse_questions
+    where question_id = #{questionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hmt.graduate.paper.pojo.MmseQuestions">
+    insert into mmse_questions (question_id, question_name, score
+      )
+    values (#{questionId,jdbcType=INTEGER}, #{questionName,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hmt.graduate.paper.pojo.MmseQuestions">
+    insert into mmse_questions
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="questionId != null">
+        question_id,
+      </if>
+      <if test="questionName != null">
+        question_name,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="questionId != null">
+        #{questionId,jdbcType=INTEGER},
+      </if>
+      <if test="questionName != null">
+        #{questionName,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <sql id="SQL_ID_UPDATE_SET">
+    <set>
+      <if test="questionId != null">
+        question_id = #{questionId,jdbcType=INTEGER},
+      </if>
+      <if test="questionName != null">
+        question_name = #{questionName,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=INTEGER},
+      </if>
+    </set>
+  </sql>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hmt.graduate.paper.pojo.MmseQuestions">
+    update mmse_questions
+    <include refid="SQL_ID_UPDATE_SET" />
+    where question_id = #{questionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hmt.graduate.paper.pojo.MmseQuestions">
+    update mmse_questions
+    set question_name = #{questionName,jdbcType=VARCHAR},
+      score = #{score,jdbcType=INTEGER}
+    where question_id = #{questionId,jdbcType=INTEGER}
+  </update>
+</mapper>

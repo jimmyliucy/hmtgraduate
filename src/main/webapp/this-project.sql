@@ -94,6 +94,10 @@ CREATE TABLE `mmse_score` (
 CREATE TABLE `patients` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(12) NOT NULL,
+  `id_card` varchar(20) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `pat_nation` varchar(20) NOT NULL,
+  `pat_job` varchar(20) NOT NULL,
   `age` int(11) NOT NULL,
   `sex` int(11) NOT NULL,
   `adress` varchar(100) DEFAULT NULL,
@@ -109,6 +113,11 @@ CREATE TABLE `patients` (
   `history_disease` varchar(300) DEFAULT NULL,
   `history_anesthesia` varchar(300) DEFAULT NULL,
   `marriage` char(1) DEFAULT NULL,
+  `remark1` varchar(200) DEFAULT NULL,
+  `remark2` varchar(200) DEFAULT NULL,
+  `remark3` varchar(200) DEFAULT NULL,
+  `remark4` varchar(200) DEFAULT NULL,
+  `remark5` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='患者表'
 

@@ -3,71 +3,140 @@ package com.hmt.graduate.paper.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author HuangMengTian
+ * @date 2021-03-16 11:45:44
+ */
 public class MmseScore implements Serializable {
-
+    /**
+     * 主键id
+     */
     private Integer id;
 
+    /**
+     * 患者主键id
+     */
     private Integer patientId;
 
+    /**
+     * 状态
+     */
     private Integer status;
 
+    /**
+     * 问题3
+     */
     private Integer questionThr;
 
+    /**
+     * 问题2
+     */
     private Integer questionTwo;
 
+    /**
+     * 问题1
+     */
     private Integer questionOne;
 
+    /**
+     * 创建时间
+     */
     private Date crateTime;
 
+    /**
+     * 问题4
+     */
     private Integer questionFour;
 
+    /**
+     * 问题5
+     */
     private Integer questionFive;
 
+    /**
+     * 问题6
+     */
     private Integer questionSix;
 
+    /**
+     * 问题7
+     */
     private Integer questionSev;
 
+    /**
+     * 问题8
+     */
     private Integer questionEig;
 
+    /**
+     * 问题9
+     */
     private Integer questionNine;
 
+    /**
+     * 问题10
+     */
     private Integer questionTen;
 
+    /**
+     * 问题11
+     */
     private Integer questionTone;
 
+    /**
+     * 问题12
+     */
     private Integer questionTtwo;
 
+    /**
+     * 问题13
+     */
     private Integer questionTthr;
 
+    /**
+     * 问题14
+     */
     private Integer questionTfour;
 
+    /**
+     * 问题15
+     */
     private Integer questionTfive;
 
+    /**
+     * 问题16
+     */
     private Integer questionTsix;
 
+    /**
+     * 问题17
+     */
     private Integer questionTsev;
 
+    /**
+     * 问题18
+     */
     private Integer questionTeig;
 
+    /**
+     * 问题19
+     */
     private Integer questionTnin;
 
+    /**
+     * 问题20
+     */
     private Integer questionWt;
 
+    /**
+     * 问题21
+     */
     private Integer questionWone;
 
-    private Integer coordinate;
-
-    private Integer score;
-
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
-        this.score = score;
-    }
-
-    private static final long serialVersionUID = 1L;
+    /**
+     * 序列化
+     */
+    private static final long serialVersionUID = -4292161216577646695L;
 
     public Integer getId() {
         return id;
@@ -269,12 +338,39 @@ public class MmseScore implements Serializable {
         this.questionWone = questionWone;
     }
 
-    public Integer getCoordinate() {
-        return coordinate;
-    }
-
-    public void setCoordinate(Integer coordinate) {
-        this.coordinate = coordinate;
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", patientId=").append(patientId);
+        sb.append(", status=").append(status);
+        sb.append(", questionThr=").append(questionThr);
+        sb.append(", questionTwo=").append(questionTwo);
+        sb.append(", questionOne=").append(questionOne);
+        sb.append(", crateTime=").append(crateTime);
+        sb.append(", questionFour=").append(questionFour);
+        sb.append(", questionFive=").append(questionFive);
+        sb.append(", questionSix=").append(questionSix);
+        sb.append(", questionSev=").append(questionSev);
+        sb.append(", questionEig=").append(questionEig);
+        sb.append(", questionNine=").append(questionNine);
+        sb.append(", questionTen=").append(questionTen);
+        sb.append(", questionTone=").append(questionTone);
+        sb.append(", questionTtwo=").append(questionTtwo);
+        sb.append(", questionTthr=").append(questionTthr);
+        sb.append(", questionTfour=").append(questionTfour);
+        sb.append(", questionTfive=").append(questionTfive);
+        sb.append(", questionTsix=").append(questionTsix);
+        sb.append(", questionTsev=").append(questionTsev);
+        sb.append(", questionTeig=").append(questionTeig);
+        sb.append(", questionTnin=").append(questionTnin);
+        sb.append(", questionWt=").append(questionWt);
+        sb.append(", questionWone=").append(questionWone);
+        sb.append("]");
+        return sb.toString();
     }
 
     @Override
@@ -313,8 +409,7 @@ public class MmseScore implements Serializable {
             && (this.getQuestionTeig() == null ? other.getQuestionTeig() == null : this.getQuestionTeig().equals(other.getQuestionTeig()))
             && (this.getQuestionTnin() == null ? other.getQuestionTnin() == null : this.getQuestionTnin().equals(other.getQuestionTnin()))
             && (this.getQuestionWt() == null ? other.getQuestionWt() == null : this.getQuestionWt().equals(other.getQuestionWt()))
-            && (this.getQuestionWone() == null ? other.getQuestionWone() == null : this.getQuestionWone().equals(other.getQuestionWone()))
-            && (this.getCoordinate() == null ? other.getCoordinate() == null : this.getCoordinate().equals(other.getCoordinate()));
+            && (this.getQuestionWone() == null ? other.getQuestionWone() == null : this.getQuestionWone().equals(other.getQuestionWone()));
     }
 
     @Override
@@ -346,44 +441,6 @@ public class MmseScore implements Serializable {
         result = prime * result + ((getQuestionTnin() == null) ? 0 : getQuestionTnin().hashCode());
         result = prime * result + ((getQuestionWt() == null) ? 0 : getQuestionWt().hashCode());
         result = prime * result + ((getQuestionWone() == null) ? 0 : getQuestionWone().hashCode());
-        result = prime * result + ((getCoordinate() == null) ? 0 : getCoordinate().hashCode());
         return result;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", patientId=").append(patientId);
-        sb.append(", status=").append(status);
-        sb.append(", questionThr=").append(questionThr);
-        sb.append(", questionTwo=").append(questionTwo);
-        sb.append(", questionOne=").append(questionOne);
-        sb.append(", crateTime=").append(crateTime);
-        sb.append(", questionFour=").append(questionFour);
-        sb.append(", questionFive=").append(questionFive);
-        sb.append(", questionSix=").append(questionSix);
-        sb.append(", questionSev=").append(questionSev);
-        sb.append(", questionEig=").append(questionEig);
-        sb.append(", questionNine=").append(questionNine);
-        sb.append(", questionTen=").append(questionTen);
-        sb.append(", questionTone=").append(questionTone);
-        sb.append(", questionTtwo=").append(questionTtwo);
-        sb.append(", questionTthr=").append(questionTthr);
-        sb.append(", questionTfour=").append(questionTfour);
-        sb.append(", questionTfive=").append(questionTfive);
-        sb.append(", questionTsix=").append(questionTsix);
-        sb.append(", questionTsev=").append(questionTsev);
-        sb.append(", questionTeig=").append(questionTeig);
-        sb.append(", questionTnin=").append(questionTnin);
-        sb.append(", questionWt=").append(questionWt);
-        sb.append(", questionWone=").append(questionWone);
-        sb.append(", coordinate=").append(coordinate);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
     }
 }

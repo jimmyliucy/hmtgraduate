@@ -1,18 +1,20 @@
 package com.hmt.graduate.paper.dao;
 
 import com.hmt.graduate.paper.pojo.MmseQuestions;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import com.lycheepay.clearing.annotation.NotNamedMapper;
+import org.lychee.mybatis.annotation.ReturnRows;
 
-import java.util.List;
-
-@Mapper
+@NotNamedMapper
 public interface MmseQuestionsMapper {
+    int deleteByPrimaryKey(Integer questionId);
 
     int insert(MmseQuestions record);
 
     int insertSelective(MmseQuestions record);
 
-    List<MmseQuestions> selectAllQuestions();
+    MmseQuestions selectByPrimaryKey(Integer questionId);
 
+    int updateByPrimaryKeySelective(MmseQuestions record);
+
+    int updateByPrimaryKey(MmseQuestions record);
 }
